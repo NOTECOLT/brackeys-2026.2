@@ -1,8 +1,83 @@
 [gd_scene format=3 uid="uid://cyp8oaf2tsvrt"]
 
 [ext_resource type="Texture2D" uid="uid://ehkfnkotujn6" path="res://assets/temp/temp_bill.jpg" id="1_h4yh8"]
+[ext_resource type="Script" uid="uid://bvob8q3jhk1rd" path="res://scripts/Swipable.cs" id="1_vl5p3"]
 
-[node name="Bill" type="Node2D" unique_id=953261018]
+[sub_resource type="Animation" id="Animation_h4yh8"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PositionWrapper:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PositionWrapper:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=821713250]
+[sub_resource type="Animation" id="Animation_vl5p3"]
+resource_name = "enter"
+length = 0.7
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PositionWrapper:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.16666667, 0, 0, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.7)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PositionWrapper:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(-800, 0, 0, 0.16666667, 133.33334, 0, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.7)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t8v7m"]
+_data = {
+&"RESET": SubResource("Animation_h4yh8"),
+&"enter": SubResource("Animation_vl5p3")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ejbd"]
+size = Vector2(492, 201)
+
+[node name="Bill" type="RigidBody2D" unique_id=1455309647]
+gravity_scale = 0.0
+script = ExtResource("1_vl5p3")
+minSwipeDistance = 15.0
+
+[node name="PositionWrapper" type="Node2D" parent="." unique_id=623221735]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PositionWrapper" unique_id=403705285]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_t8v7m")
+autoplay = &"enter"
+
+[node name="Sprite2D" type="Sprite2D" parent="PositionWrapper" unique_id=821713250]
 texture = ExtResource("1_h4yh8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=714117665]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_0ejbd")
