@@ -2,6 +2,9 @@
 .godot/
 .nomedia
 
+# VSCode
+.vscode/
+
 # Godot-specific ignores
 .import/
 export.cfg
