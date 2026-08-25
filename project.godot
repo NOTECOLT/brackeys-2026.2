@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="brackeys-2026.2"
+config/name="trust no ONES"
+config/version="dev-1.0"
 run/main_scene="uid://dokjjn5syjydj"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -19,6 +20,7 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1024
 window/size/viewport_height=768
+window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
