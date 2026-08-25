@@ -1,16 +1,20 @@
 [gd_scene format=3 uid="uid://dokjjn5syjydj"]
 
+[ext_resource type="Script" uid="uid://cfqvh3owl3xb5" path="res://scripts/ui/MainMenu.cs" id="1_l6cm7"]
+
 [node name="MainMenu" type="Node2D" unique_id=1437215789]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1054598895]
 
-[node name="Menu" type="Control" parent="." unique_id=473129890]
+[node name="Menu" type="Control" parent="." unique_id=473129890 node_paths=PackedStringArray("startGameButton")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -512.0
 offset_top = -384.0
 offset_right = 512.0
 offset_bottom = 376.0
+script = ExtResource("1_l6cm7")
+startGameButton = NodePath("StartGameButton")
 
 [node name="Background" type="ColorRect" parent="Menu" unique_id=1742102238]
 layout_mode = 1

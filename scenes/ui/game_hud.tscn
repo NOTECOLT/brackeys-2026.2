@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bdouadh5oqfmh"]
 
-[ext_resource type="Script" uid="uid://bbrgkvpnl61tp" path="res://scripts/GameHUD.cs" id="1_jna2d"]
+[ext_resource type="Script" uid="uid://bbrgkvpnl61tp" path="res://scripts/ui/GameHUD.cs" id="1_xsr0h"]
 
 [node name="GameHUD" type="Control" unique_id=675619086]
 layout_mode = 3
@@ -9,7 +9,7 @@ offset_left = -512.0
 offset_top = -384.0
 offset_right = 512.0
 offset_bottom = 384.0
-script = ExtResource("1_jna2d")
+script = ExtResource("1_xsr0h")
 
 [node name="Timer" type="Label" parent="." unique_id=1326464284]
 layout_mode = 0
