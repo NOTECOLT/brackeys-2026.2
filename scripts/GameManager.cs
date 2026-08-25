@@ -39,7 +39,7 @@ public partial class GameManager : Node {
         if (timeLeft > 0) {
             timeLeft -= delta;
         } else {
-            GD.Print("Game Over");
+            GetTree().ChangeSceneToFile("res://scenes//game_over.tscn");
         }
     }
 
