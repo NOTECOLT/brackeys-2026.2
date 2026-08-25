@@ -3,7 +3,7 @@ using System;
 
 public partial class SwipeZone : Area2D {
 	[Signal]
-	public delegate void BillSwipedEventHandler();
+	public delegate void BillSwipedEventHandler(bool billIsReal);
 	public override void _Ready() {
 	}
 
@@ -15,7 +15,11 @@ public partial class SwipeZone : Area2D {
 	/// </summary>
 	/// <param name="body"></param>
 	public void OnBodyEntered(Node2D body) {
-		body.QueueFree();
-		EmitSignal(SignalName.BillSwiped);
+		if (body is Bill bill) {
+			bool isReal = bill.isReal;
+			
+			EmitSignal(SignalName.BillSwiped, isReal);
+			body.QueueFree();
+		}
 	}
 }

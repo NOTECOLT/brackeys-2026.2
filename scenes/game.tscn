@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://us777beeva7r"]
 
+[ext_resource type="Texture2D" uid="uid://dmxlujyhgrukn" path="res://assets/temp/table_background.jpg" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://it433dksbr3h" path="res://scenes/objects/game_manager.tscn" id="1_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://cyp8oaf2tsvrt" path="res://scenes/objects/bill.tscn" id="2_iywne"]
 [ext_resource type="PackedScene" uid="uid://bdu6wdhtev10f" path="res://scenes/objects/swipe_zone.tscn" id="3_p57ef"]
@@ -7,7 +8,30 @@
 
 [node name="Main" type="Node2D" unique_id=1139027406]
 
+[node name="TableBackground" type="Sprite2D" parent="." unique_id=48266285]
+position = Vector2(3, 8)
+texture = ExtResource("1_iywne")
+
+[node name="RealLabel" type="Label" parent="." unique_id=710308401]
+offset_left = 379.0
+offset_top = -37.0
+offset_right = 475.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "REAL"
+
+[node name="FakeLabel" type="Label" parent="." unique_id=710035627]
+offset_left = -491.0
+offset_top = -32.0
+offset_right = -395.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "FAKE"
+
 [node name="GameManager" parent="." unique_id=167162442 node_paths=PackedStringArray("realBillZone", "fakeBillZone") instance=ExtResource("1_lbhrr")]
+timeLimit = 15.0
 bill = ExtResource("2_iywne")
 realBillZone = NodePath("../RealBillSwipeZone")
 fakeBillZone = NodePath("../FakeBillSwipeZone")
@@ -22,19 +46,3 @@ position = Vector2(-685, 6)
 
 [node name="GameHUD" parent="." unique_id=675619086 node_paths=PackedStringArray("gameManager") instance=ExtResource("4_u5sy4")]
 gameManager = NodePath("../GameManager")
-
-[node name="RealLabel" type="Label" parent="." unique_id=710308401]
-offset_left = 379.0
-offset_top = -37.0
-offset_right = 475.0
-offset_bottom = 18.0
-theme_override_font_sizes/font_size = 40
-text = "REAL"
-
-[node name="FakeLabel" type="Label" parent="." unique_id=710035627]
-offset_left = -491.0
-offset_top = -32.0
-offset_right = -395.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 40
-text = "FAKE"

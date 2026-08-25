@@ -2,15 +2,26 @@ using Godot;
 using System;
 
 public partial class GameManager : Node {
+    /* -- Public Values used for HUD & Game State -- */ 
     [Export]
     public double timeLeft;
+    [Export]
+    public int score = 0;
+
+    /* -- Game Settings -- */
 
     /// <summary>
     /// Time Limit expressed in seconds
     /// </summary>
     [Export]
     public double timeLimit = 30.0d;
+    /// <summary>
+    /// Increase in time left whenever a bill is swiped correctly
+    /// </summary>
+    [Export]
+    public double timeBonus = 2.0d;
 
+    /* -- Referenced Objects -- */
     [Export]
     public PackedScene bill;
     [Export]
@@ -21,6 +32,8 @@ public partial class GameManager : Node {
     // Signal sent on timer end
     [Signal]
     public delegate void TimerEndEventHandler();
+    [Signal]
+    public delegate void ScoreUpdateEventHandler(int score);
     
     public override void _Ready() {
         base._Ready();
@@ -32,7 +45,11 @@ public partial class GameManager : Node {
         realBillZone.BillSwiped += OnRealBillSwiped;
         fakeBillZone.BillSwiped += OnFakeBillSwiped;
 
+        // Set initial game values
         timeLeft = timeLimit;
+        score = 0;
+
+        // Spawn first bill
         SpawnBill();
     }
 
@@ -60,16 +77,23 @@ public partial class GameManager : Node {
         CallDeferred(MethodName.AddChild, newBillNode);
     }
 
-    public void OnRealBillSwiped() {
+    private void OnRealBillSwiped(bool billIsReall) {
+        if (billIsReall) billSwipedCorrect();
         OnBillSwiped();
     }
 
-    public void OnFakeBillSwiped() {
+    private void OnFakeBillSwiped(bool billIsReall) {
+        if (!billIsReall) billSwipedCorrect();
         OnBillSwiped();
     }
-
-
-    public void OnBillSwiped() {
+    
+    private void OnBillSwiped() {
         SpawnBill();
+    }
+
+    private void billSwipedCorrect() {
+        timeLeft += timeBonus;
+        score += 1;
+        EmitSignal(SignalName.ScoreUpdate, score);
     }
 }
