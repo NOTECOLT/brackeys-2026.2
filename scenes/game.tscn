@@ -22,3 +22,19 @@ position = Vector2(-685, 6)
 
 [node name="GameHUD" parent="." unique_id=675619086 node_paths=PackedStringArray("gameManager") instance=ExtResource("4_u5sy4")]
 gameManager = NodePath("../GameManager")
+
+[node name="RealLabel" type="Label" parent="." unique_id=710308401]
+offset_left = 379.0
+offset_top = -37.0
+offset_right = 475.0
+offset_bottom = 18.0
+theme_override_font_sizes/font_size = 40
+text = "REAL"
+
+[node name="FakeLabel" type="Label" parent="." unique_id=710035627]
+offset_left = -491.0
+offset_top = -32.0
+offset_right = -395.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 40
+text = "FAKE"

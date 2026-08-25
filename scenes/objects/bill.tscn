@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://cyp8oaf2tsvrt"]
 
+[ext_resource type="Script" uid="uid://ctchepikbyrhg" path="res://scripts/Bill.cs" id="1_cc68x"]
 [ext_resource type="Texture2D" uid="uid://ehkfnkotujn6" path="res://assets/temp/temp_bill.jpg" id="1_h4yh8"]
 [ext_resource type="Script" uid="uid://bvob8q3jhk1rd" path="res://scripts/Swipable.cs" id="1_vl5p3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ejbd"]
+size = Vector2(492, 201)
 
 [sub_resource type="Animation" id="Animation_h4yh8"]
 length = 0.001
@@ -60,13 +64,13 @@ _data = {
 &"enter": SubResource("Animation_vl5p3")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ejbd"]
-size = Vector2(492, 201)
-
 [node name="Bill" type="RigidBody2D" unique_id=1455309647]
 gravity_scale = 0.0
-script = ExtResource("1_vl5p3")
-minSwipeDistance = 15.0
+script = ExtResource("1_cc68x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=714117665]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_0ejbd")
 
 [node name="PositionWrapper" type="Node2D" parent="." unique_id=623221735]
 
@@ -78,6 +82,15 @@ autoplay = &"enter"
 [node name="Sprite2D" type="Sprite2D" parent="PositionWrapper" unique_id=821713250]
 texture = ExtResource("1_h4yh8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=714117665]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_0ejbd")
+[node name="TempBillLabel" type="Label" parent="PositionWrapper" unique_id=1261197097]
+offset_left = -120.0
+offset_top = -72.0
+offset_right = 128.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "REAL"
+
+[node name="Swipable" type="Node" parent="." unique_id=231689389]
+script = ExtResource("1_vl5p3")
+minSwipeDistance = 15.0

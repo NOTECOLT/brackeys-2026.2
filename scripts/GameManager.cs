@@ -25,6 +25,9 @@ public partial class GameManager : Node {
     public override void _Ready() {
         base._Ready();
 
+        // Set Random Seed based on time
+        GD.Randomize();
+
         // Add Signal Triggers
         realBillZone.BillSwiped += OnRealBillSwiped;
         fakeBillZone.BillSwiped += OnFakeBillSwiped;
@@ -44,11 +47,17 @@ public partial class GameManager : Node {
     }
 
     public void SpawnBill() {
-        Node2D newBill = bill.Instantiate<Node2D>();
+        Node2D newBillNode = bill.Instantiate<Node2D>();
+
+        Bill newBill = newBillNode.GetNode<Bill>(".");
+
+        // Randomly generate real or fake bill
+        int isReal = (int)(GD.Randi() % 2); // Generates 0 or 1
+        newBill.isReal = isReal == 0;
 
         // CallDeferred pushes the function call to the end of the current frame.
         // Godot forbids physics state alterations (add new node) while it processes collisions
-        CallDeferred(MethodName.AddChild, newBill);
+        CallDeferred(MethodName.AddChild, newBillNode);
     }
 
     public void OnRealBillSwiped() {
