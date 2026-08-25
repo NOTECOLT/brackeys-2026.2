@@ -27,8 +27,8 @@ public partial class GameHUD : Control {
     }
 
     private void setTimerLabel(double time) {
-        double min = Math.Abs(Math.Round(time / 60d));
-        double sec = Math.Abs(Math.Round(time % 60d));
+        double min = Math.Abs(Math.Floor(time / 60d));
+        double sec = Math.Abs(Math.Floor(time % 60d));
         _timer.Text = $"{min}:{sec:00}";
     }
 }
