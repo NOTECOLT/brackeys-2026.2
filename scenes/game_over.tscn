@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ygw1bbvprhs3"]
 
 [ext_resource type="Script" uid="uid://cfqvh3owl3xb5" path="res://scripts/ui/MainMenu.cs" id="1_xeevv"]
+[ext_resource type="AudioStream" uid="uid://xkcgd7tt1btp" path="res://assets/audio/bgm/placeholder_moody_tensionbgmA.wav" id="2_wqhvx"]
 
 [node name="GameOver" type="Node2D" unique_id=1437215789]
 
@@ -58,3 +59,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "Restart Game"
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=1152833728]
+stream = ExtResource("2_wqhvx")
+volume_db = -3.0
+autoplay = true

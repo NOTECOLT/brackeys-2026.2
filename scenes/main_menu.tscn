@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dokjjn5syjydj"]
 
 [ext_resource type="Script" uid="uid://cfqvh3owl3xb5" path="res://scripts/ui/MainMenu.cs" id="1_l6cm7"]
+[ext_resource type="AudioStream" uid="uid://xkcgd7tt1btp" path="res://assets/audio/bgm/placeholder_moody_tensionbgmA.wav" id="2_ekxnf"]
 
 [node name="MainMenu" type="Node2D" unique_id=1437215789]
 
@@ -57,3 +58,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "Start Game"
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=867137514]
+stream = ExtResource("2_ekxnf")
+volume_db = -3.0
+autoplay = true

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cyp8oaf2tsvrt" path="res://scenes/objects/bill.tscn" id="2_iywne"]
 [ext_resource type="PackedScene" uid="uid://bdu6wdhtev10f" path="res://scenes/objects/swipe_zone.tscn" id="3_p57ef"]
 [ext_resource type="PackedScene" uid="uid://bdouadh5oqfmh" path="res://scenes/ui/game_hud.tscn" id="4_u5sy4"]
+[ext_resource type="AudioStream" uid="uid://b3gt8hu3tplki" path="res://assets/audio/bgm/placeholder_moody_tensionbgmB.wav" id="6_p57ef"]
 
 [node name="Main" type="Node2D" unique_id=1139027406]
 
@@ -46,3 +47,8 @@ position = Vector2(-685, 6)
 
 [node name="GameHUD" parent="." unique_id=675619086 node_paths=PackedStringArray("gameManager") instance=ExtResource("4_u5sy4")]
 gameManager = NodePath("../GameManager")
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=1055446424]
+stream = ExtResource("6_p57ef")
+volume_db = -3.0
+autoplay = true
