@@ -2,8 +2,8 @@ using Godot;
 using System;
 
 public partial class GameManager : Node {
-
-    private double _timeLeft;
+    [Export]
+    public double timeLeft;
 
     /// <summary>
     /// Time Limit expressed in seconds
@@ -29,15 +29,15 @@ public partial class GameManager : Node {
         realBillZone.BillSwiped += OnRealBillSwiped;
         fakeBillZone.BillSwiped += OnFakeBillSwiped;
 
-        _timeLeft = timeLimit;
+        timeLeft = timeLimit;
         SpawnBill();
     }
 
     public override void _Process(double delta) {
         base._Process(delta);
 
-        if (_timeLeft > 0) {
-            _timeLeft -= delta;
+        if (timeLeft > 0) {
+            timeLeft -= delta;
         } else {
             GD.Print("Game Over");
         }
