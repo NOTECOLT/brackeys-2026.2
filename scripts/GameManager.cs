@@ -13,7 +13,10 @@ public partial class GameManager : Node {
 
     [Export]
     public PackedScene bill;
-
+    [Export]
+    public SwipeZone realBillZone;
+    [Export]
+    public SwipeZone fakeBillZone;
 
     // Signal sent on timer end
     [Signal]
@@ -21,6 +24,10 @@ public partial class GameManager : Node {
     
     public override void _Ready() {
         base._Ready();
+
+        // Add Signal Triggers
+        realBillZone.BillSwiped += OnRealBillSwiped;
+        fakeBillZone.BillSwiped += OnFakeBillSwiped;
 
         _timeLeft = timeLimit;
         SpawnBill();
@@ -39,6 +46,21 @@ public partial class GameManager : Node {
     public void SpawnBill() {
         Node2D newBill = bill.Instantiate<Node2D>();
 
-        AddChild(newBill);
+        // CallDeferred pushes the function call to the end of the current frame.
+        // Godot forbids physics state alterations (add new node) while it processes collisions
+        CallDeferred(MethodName.AddChild, newBill);
+    }
+
+    public void OnRealBillSwiped() {
+        OnBillSwiped();
+    }
+
+    public void OnFakeBillSwiped() {
+        OnBillSwiped();
+    }
+
+
+    public void OnBillSwiped() {
+        SpawnBill();
     }
 }

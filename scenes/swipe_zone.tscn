@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bdu6wdhtev10f"]
+
+[ext_resource type="Script" uid="uid://4sadscnk7drf" path="res://scripts/SwipeZone.cs" id="1_5oljw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ejbd"]
+size = Vector2(47, 775)
+
+[node name="Swipe Zone" type="Area2D" unique_id=970888838]
+script = ExtResource("1_5oljw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=569622909]
+position = Vector2(-1.5, -1.5)
+shape = SubResource("RectangleShape2D_0ejbd")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
