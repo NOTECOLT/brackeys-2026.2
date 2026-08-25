@@ -1,18 +1,12 @@
 [gd_scene format=3 uid="uid://bdouadh5oqfmh"]
 
 [ext_resource type="Script" uid="uid://bbrgkvpnl61tp" path="res://scripts/ui/GameHUD.cs" id="1_xsr0h"]
+[ext_resource type="Texture2D" uid="uid://c54dhxj6gqjgt" path="res://assets/temp/magnifying_glass.png" id="2_fnxle"]
 
-[node name="GameHUD" type="Control" unique_id=675619086]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -512.0
-offset_top = -384.0
-offset_right = 512.0
-offset_bottom = 384.0
+[node name="GameHUD" type="CanvasLayer" unique_id=1871189853]
 script = ExtResource("1_xsr0h")
 
 [node name="Timer" type="Label" parent="." unique_id=1326464284]
-layout_mode = 0
 offset_left = 14.0
 offset_top = 14.0
 offset_right = 156.0
@@ -22,7 +16,6 @@ theme_override_font_sizes/font_size = 30
 text = "#:##"
 
 [node name="Score" type="Label" parent="." unique_id=903965082]
-layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -35,3 +28,12 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Score: 0"
 horizontal_alignment = 2
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=648587298]
+offset_left = 7.9999847
+offset_top = 696.0
+offset_right = 758.0
+offset_bottom = 1446.0
+rotation = -0.7853982
+scale = Vector2(0.125, 0.125)
+texture_normal = ExtResource("2_fnxle")

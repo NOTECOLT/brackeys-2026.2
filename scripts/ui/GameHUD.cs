@@ -1,34 +1,34 @@
 using Godot;
 using System;
 
-public partial class GameHUD : Control {
-    private Label _timer;
-    private Label _score;
+public partial class GameHUD : CanvasLayer {
+	private Label _timer;
+	private Label _score;
 
-    [Export]
-    public GameManager gameManager;
+	[Export]
+	public GameManager gameManager;
 
-    public override void _Ready() {
-        base._Ready();
+	public override void _Ready() {
+		base._Ready();
 
-        _timer = GetNode<Label>("Timer");
-        _score = GetNode<Label>("Score");
-        gameManager.ScoreUpdate += onScoreUpdate;
-    }
+		_timer = GetNode<Label>("Timer");
+		_score = GetNode<Label>("Score");
+		gameManager.ScoreUpdate += onScoreUpdate;
+	}
 
-    public override void _Process(double delta) {
-        base._Process(delta);
+	public override void _Process(double delta) {
+		base._Process(delta);
 
-        setTimerLabel(gameManager.timeLeft);
-    }
+		setTimerLabel(gameManager.timeLeft);
+	}
 
-    private void onScoreUpdate(int score) {
-        _score.Text = $"Score: {score}";
-    }
+	private void onScoreUpdate(int score) {
+		_score.Text = $"Score: {score}";
+	}
 
-    private void setTimerLabel(double time) {
-        double min = Math.Abs(Math.Floor(time / 60d));
-        double sec = Math.Abs(Math.Floor(time % 60d));
-        _timer.Text = $"{min}:{sec:00}";
-    }
+	private void setTimerLabel(double time) {
+		double min = Math.Abs(Math.Floor(time / 60d));
+		double sec = Math.Abs(Math.Floor(time % 60d));
+		_timer.Text = $"{min}:{sec:00}";
+	}
 }
