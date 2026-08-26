@@ -8,13 +8,25 @@ public partial class Bill : RigidBody2D {
     [Export]
     public bool isReal;
 
+    [Export]
+    public Texture2D _realTempSprite;
 
-    private Label _tempBillLabel;
+    [Export]
+    public Texture2D[] _fakeTempSprites;
+
+
+    private Sprite2D _tempBillSprite;
 
     public override void _Ready() {
         base._Ready();
 
-        _tempBillLabel = GetNode<Label>("PositionWrapper/TempBillLabel");
-        _tempBillLabel.Text = isReal ? "REAL" : "FAKE";
+        _tempBillSprite = GetNode<Sprite2D>("PositionWrapper/Sprite2D");
+        if (isReal) {
+            _tempBillSprite.Texture = _realTempSprite;
+        } else {
+            GD.Randomize();
+
+            _tempBillSprite.Texture = _fakeTempSprites[GD.Randi() % _fakeTempSprites.Length];
+        }
     }
 }

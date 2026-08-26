@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://ctchepikbyrhg" path="res://scripts/Bill.cs" id="1_cc68x"]
 [ext_resource type="Texture2D" uid="uid://ehkfnkotujn6" path="res://assets/temp/temp_bill.jpg" id="1_h4yh8"]
 [ext_resource type="Script" uid="uid://bvob8q3jhk1rd" path="res://scripts/Swipable.cs" id="1_vl5p3"]
+[ext_resource type="Texture2D" uid="uid://b81pfagykjayr" path="res://assets/temp/temp_bill_fake1.jpg" id="3_q7tye"]
+[ext_resource type="Texture2D" uid="uid://dcbgelcnuylrr" path="res://assets/temp/temp_bill_fake2.jpg" id="4_ie4eh"]
+[ext_resource type="Texture2D" uid="uid://cdq8g73362kf" path="res://assets/temp/temp_bill_fake3.jpg" id="5_88khl"]
+[ext_resource type="Texture2D" uid="uid://c70grjwgxjh7a" path="res://assets/temp/temp_bill_fake4.jpg" id="6_7yevk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ejbd"]
 size = Vector2(492, 201)
@@ -81,6 +85,8 @@ _data = {
 [node name="Bill" type="RigidBody2D" unique_id=1455309647]
 gravity_scale = 0.0
 script = ExtResource("1_cc68x")
+_realTempSprite = ExtResource("1_h4yh8")
+_fakeTempSprites = Array[Texture2D]([ExtResource("3_q7tye"), ExtResource("4_ie4eh"), ExtResource("5_88khl"), ExtResource("6_7yevk")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=714117665]
 position = Vector2(0, -0.5)
@@ -97,6 +103,7 @@ autoplay = &"enter"
 texture = ExtResource("1_h4yh8")
 
 [node name="TempBillLabel" type="Label" parent="PositionWrapper" unique_id=1261197097]
+visible = false
 offset_left = -120.0
 offset_top = -72.0
 offset_right = 128.0

@@ -9,23 +9,23 @@ script = ExtResource("1_xsr0h")
 [node name="Timer" type="Label" parent="." unique_id=1326464284]
 offset_left = 14.0
 offset_top = 14.0
-offset_right = 156.0
-offset_bottom = 81.0
+offset_right = 184.0
+offset_bottom = 104.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "#:##"
 
 [node name="Score" type="Label" parent="." unique_id=903965082]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -136.0
+offset_left = -248.0
 offset_top = 14.0
 offset_right = -21.0
-offset_bottom = 56.0
+offset_bottom = 88.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Score: 0"
 horizontal_alignment = 2
 
