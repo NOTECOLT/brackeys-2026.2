@@ -57,6 +57,20 @@ tracks/1/keys = {
 "points": PackedFloat32Array(-800, 0, 0, 0.16666667, 133.33334, 0, -0.16666667, 0, 0, 0),
 "times": PackedFloat32Array(0, 0.7)
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Swipable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"SetIsSwipable"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t8v7m"]
 _data = {

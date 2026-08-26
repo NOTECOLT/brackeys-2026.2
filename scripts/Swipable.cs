@@ -2,24 +2,24 @@ using Godot;
 using System;
 
 public partial class Swipable : Node {
-	private Vector2 _mouseStartPosition;
-	private Vector2 _mouseCurrentPosition;
-	private bool _isSwiping = false;
-	private RigidBody2D _rb2d;
-
 	[Export]
 	public float minSwipeDistance = 10;
 
 	[Export]
 	public float swipeForceFactor = 3000;
 
+	private Vector2 _mouseStartPosition;
+	private Vector2 _mouseCurrentPosition;
+	private bool _isSwiping = false;
+	private RigidBody2D _rb2d;
+	private bool _isSwipable = false;
 	public override void _Ready() {
 		_rb2d = GetNode<RigidBody2D>("..");
 	}
 
 	public override void _Process(double delta) {
 		// Detect Swipe Start
-		if (Input.IsActionJustPressed("press")) {
+		if (Input.IsActionJustPressed("press") && _isSwipable) {
 			if (!_isSwiping) {
 				_isSwiping = true;
 				_mouseStartPosition = _rb2d.GetGlobalMousePosition();
@@ -49,5 +49,12 @@ public partial class Swipable : Node {
 		if (Input.IsActionJustReleased("press") && _isSwiping) {
 			_isSwiping = false;
 		}
+	}
+
+	/// <summary>
+	/// Called in animation player. Animation dictates when a bill is swipable.
+	/// </summary>
+	public void SetIsSwipable() {
+		_isSwipable = true;
 	}
 }
