@@ -9,6 +9,27 @@
 [ext_resource type="AudioStream" uid="uid://b3gt8hu3tplki" path="res://assets/audio/bgm/placeholder_moody_tensionbgmB.wav" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://b8fwqykyklaq5" path="res://scenes/ui/game_camera.tscn" id="7_u5sy4"]
 
+[sub_resource type="Gradient" id="Gradient_gee14"]
+offsets = PackedFloat32Array(0, 0.9)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ejbd"]
+gradient = SubResource("Gradient_gee14")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.49317408, 0.5)
+fill_to = Vector2(0.79692835, 0.03242321)
+
+[sub_resource type="Gradient" id="Gradient_0tnpc"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_543kl"]
+gradient = SubResource("Gradient_0tnpc")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.49658704, 0.4795222)
+fill_to = Vector2(0.80716723, 0.8583618)
+
 [node name="Main" type="Node2D" unique_id=1139027406]
 
 [node name="GameManager" parent="." unique_id=167162442 node_paths=PackedStringArray("realBillZone", "fakeBillZone") instance=ExtResource("1_lbhrr")]
@@ -57,3 +78,21 @@ gameManager = NodePath("../GameManager")
 [node name="GameCamera" parent="." unique_id=1484927458 node_paths=PackedStringArray("gameManager") instance=ExtResource("7_u5sy4")]
 zoomedValue = 2.0
 gameManager = NodePath("../GameManager")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1691988507]
+scale = Vector2(19.624998, 13.000001)
+color = Color(0.88460666, 0.7767961, 0.53932536, 1)
+energy = 0.8
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_0ejbd")
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=1372708455]
+position = Vector2(4.5474735e-13, -0.99999905)
+scale = Vector2(14.000001, 11.000001)
+color = Color(0.9872566, 0.87723106, 0.67863166, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_543kl")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1758278171]
+energy = 0.9
+blend_mode = 1
