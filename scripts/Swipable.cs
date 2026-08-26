@@ -23,8 +23,6 @@ public partial class Swipable : Node {
 			if (!_isSwiping) {
 				_isSwiping = true;
 				_mouseStartPosition = _rb2d.GetGlobalMousePosition();
-
-				GD.Print($"Swipe Start {_mouseStartPosition}");
 			}
 		}
 

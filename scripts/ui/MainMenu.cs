@@ -7,14 +7,14 @@ public partial class MainMenu : Control {
 	public override void _Ready() {
 		base._Ready();
 
-		startGameButton.Pressed += onStartGamePressed;
+		startGameButton.Pressed += OnStartGamePressed;
 	}
 	
 	public override void _Process(double delta) {
 		base._Process(delta);
 	}
 
-	private void onStartGamePressed() {
+	private void OnStartGamePressed() {
 		GetTree().ChangeSceneToFile("res://scenes//game.tscn");
 	}
 }

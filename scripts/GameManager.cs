@@ -5,6 +5,7 @@ public partial class GameManager : Node {
     /* -- Public Values used for HUD & Game State -- */ 
     [Export]
     public double timeLeft;
+
     [Export]
     public int score = 0;
 
@@ -15,23 +16,33 @@ public partial class GameManager : Node {
     /// </summary>
     [Export]
     public double timeLimit = 30.0d;
+
     /// <summary>
     /// Increase in time left whenever a bill is swiped correctly
     /// </summary>
     [Export]
     public double timeBonus = 2.0d;
 
+    [Export]
+    public bool isZoomed = false;
+
     /* -- Referenced Objects -- */
     [Export]
     public PackedScene bill;
+
     [Export]
     public SwipeZone realBillZone;
+
     [Export]
     public SwipeZone fakeBillZone;
 
-    // Signal sent on timer end
+    /* -- Signals -- */
+    /// <summary>
+    /// Signal sent on timer end
+    /// </summary>
     [Signal]
     public delegate void TimerEndEventHandler();
+
     [Signal]
     public delegate void ScoreUpdateEventHandler(int score);
     
@@ -63,7 +74,7 @@ public partial class GameManager : Node {
         }
     }
 
-    public void SpawnBill() {
+    private void SpawnBill() {
         Node2D newBillNode = bill.Instantiate<Node2D>();
 
         Bill newBill = newBillNode.GetNode<Bill>(".");
@@ -78,12 +89,12 @@ public partial class GameManager : Node {
     }
 
     private void OnRealBillSwiped(bool billIsReall) {
-        if (billIsReall) billSwipedCorrect();
+        if (billIsReall) BillSwipedCorrect();
         OnBillSwiped();
     }
 
     private void OnFakeBillSwiped(bool billIsReall) {
-        if (!billIsReall) billSwipedCorrect();
+        if (!billIsReall) BillSwipedCorrect();
         OnBillSwiped();
     }
     
@@ -91,7 +102,7 @@ public partial class GameManager : Node {
         SpawnBill();
     }
 
-    private void billSwipedCorrect() {
+    private void BillSwipedCorrect() {
         timeLeft += timeBonus;
         score += 1;
         EmitSignal(SignalName.ScoreUpdate, score);
