@@ -4,7 +4,7 @@ using System;
 public partial class GameHUD : CanvasLayer {
 	private Label _timer;
 	private Label _score;
-	private Button _zoomButton;
+	// private TextureButton _zoomButton;
 
 	[Export]
 	public GameManager gameManager;
@@ -14,10 +14,10 @@ public partial class GameHUD : CanvasLayer {
 
 		_timer = GetNode<Label>("Timer");
 		_score = GetNode<Label>("Score");
-		_zoomButton = GetNode<Button>("ZoomButton");
+		// _zoomButton = GetNode<TextureButton>("ZoomButton");
 
 		gameManager.ScoreUpdate += OnScoreUpdate;
-		_zoomButton.Pressed += OnZoomButtonPressed;
+		// _zoomButton.Pressed += OnZoomButtonPressed;
 	}
 
 	public override void _Process(double delta) {
@@ -36,7 +36,8 @@ public partial class GameHUD : CanvasLayer {
 		_timer.Text = $"{min}:{sec:00}";
 	}
 
-	private void OnZoomButtonPressed() {
-		
-	}
+	// Disabled for now ~ (will use right click to activate zoom)
+	// private void OnZoomButtonPressed() {
+	// 	gameManager.toggleIsZoomed();
+	// }
 }

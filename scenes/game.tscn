@@ -6,8 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://bdu6wdhtev10f" path="res://scenes/objects/swipe_zone.tscn" id="3_p57ef"]
 [ext_resource type="PackedScene" uid="uid://bdouadh5oqfmh" path="res://scenes/ui/game_hud.tscn" id="4_u5sy4"]
 [ext_resource type="AudioStream" uid="uid://b3gt8hu3tplki" path="res://assets/audio/bgm/placeholder_moody_tensionbgmB.wav" id="6_p57ef"]
+[ext_resource type="Script" uid="uid://c4kxh6mkp3by1" path="res://scripts/CameraZoom.cs" id="7_u5sy4"]
 
 [node name="Main" type="Node2D" unique_id=1139027406]
+
+[node name="GameManager" parent="." unique_id=167162442 node_paths=PackedStringArray("realBillZone", "fakeBillZone") instance=ExtResource("1_lbhrr")]
+timeLimit = 10.0
+bill = ExtResource("2_iywne")
+realBillZone = NodePath("../RealBillSwipeZone")
+fakeBillZone = NodePath("../FakeBillSwipeZone")
 
 [node name="TableBackground" type="Sprite2D" parent="." unique_id=48266285]
 position = Vector2(3, 8)
@@ -31,13 +38,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "FAKE"
 
-[node name="GameManager" parent="." unique_id=167162442 node_paths=PackedStringArray("realBillZone", "fakeBillZone") instance=ExtResource("1_lbhrr")]
-timeLimit = 10.0
-timeBonus = 1.0
-bill = ExtResource("2_iywne")
-realBillZone = NodePath("../RealBillSwipeZone")
-fakeBillZone = NodePath("../FakeBillSwipeZone")
-
 [node name="RealBillSwipeZone" parent="." unique_id=970888838 instance=ExtResource("3_p57ef")]
 position = Vector2(651, 0)
 
@@ -52,4 +52,7 @@ autoplay = true
 [node name="GameHUD" parent="." unique_id=675619086 node_paths=PackedStringArray("gameManager") instance=ExtResource("4_u5sy4")]
 gameManager = NodePath("../GameManager")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1142543078]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1142543078 node_paths=PackedStringArray("gameManager")]
+script = ExtResource("7_u5sy4")
+zoomedValue = 2.4
+gameManager = NodePath("../GameManager")

@@ -6,9 +6,6 @@ public partial class GameManager : Node {
     [Export]
     public double timeLeft;
 
-    [Export]
-    public int score = 0;
-
     /* -- Game Settings -- */
 
     /// <summary>
@@ -22,9 +19,6 @@ public partial class GameManager : Node {
     /// </summary>
     [Export]
     public double timeBonus = 2.0d;
-
-    [Export]
-    public bool isZoomed = false;
 
     /* -- Referenced Objects -- */
     [Export]
@@ -46,6 +40,14 @@ public partial class GameManager : Node {
     [Signal]
     public delegate void ScoreUpdateEventHandler(int score);
     
+    [Signal]
+    public delegate void SetZoomEventHandler(bool isZoomed);
+
+    /* -- Other Private Game Variables used for Game State-- */
+    private int _score = 0;
+
+    private bool _isZoomed = false;
+
     public override void _Ready() {
         base._Ready();
 
@@ -58,7 +60,8 @@ public partial class GameManager : Node {
 
         // Set initial game values
         timeLeft = timeLimit;
-        score = 0;
+        _score = 0;
+        _isZoomed = false;
 
         // Spawn first bill
         SpawnBill();
@@ -67,11 +70,29 @@ public partial class GameManager : Node {
     public override void _Process(double delta) {
         base._Process(delta);
 
+        /* -- Zoom Control -- */
+        if (Input.IsActionJustPressed("zoom")) {
+            toggleIsZoomed(true);
+        }
+
+        if (Input.IsActionJustReleased("zoom")) {
+            toggleIsZoomed(false);
+        }
+
+        /* -- Timer Processing -- */
         if (timeLeft > 0) {
             timeLeft -= delta;
         } else {
             GetTree().ChangeSceneToFile("res://scenes//game_over.tscn");
         }
+    }
+
+    /// <summary>
+    /// Toggles isZoomed. Currently referenced in GameHUD when the zoom button is pressed.
+    /// </summary>
+    public void toggleIsZoomed(bool isZoomed) {
+        _isZoomed = isZoomed;
+        EmitSignal(SignalName.SetZoom, _isZoomed);
     }
 
     private void SpawnBill() {
@@ -104,7 +125,7 @@ public partial class GameManager : Node {
 
     private void BillSwipedCorrect() {
         timeLeft += timeBonus;
-        score += 1;
-        EmitSignal(SignalName.ScoreUpdate, score);
+        _score += 1;
+        EmitSignal(SignalName.ScoreUpdate, _score);
     }
 }
