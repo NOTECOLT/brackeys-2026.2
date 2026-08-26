@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://dcbgelcnuylrr" path="res://assets/temp/temp_bill_fake2.jpg" id="4_ie4eh"]
 [ext_resource type="Texture2D" uid="uid://cdq8g73362kf" path="res://assets/temp/temp_bill_fake3.jpg" id="5_88khl"]
 [ext_resource type="Texture2D" uid="uid://c70grjwgxjh7a" path="res://assets/temp/temp_bill_fake4.jpg" id="6_7yevk"]
+[ext_resource type="AudioStream" uid="uid://caho7mh1tpuhm" path="res://assets/audio/sfx/Placeholder_Foley_BillSlide.wav" id="8_ie4eh"]
+[ext_resource type="Script" uid="uid://d3683u048akxa" path="res://scripts/audio/RandomSFXPlayer.cs" id="9_88khl"]
+[ext_resource type="AudioStream" uid="uid://cd7tt6orf6tql" path="res://assets/audio/sfx/Placeholder_HoldBill_Foley_Movement1.wav" id="10_c8624"]
+[ext_resource type="AudioStream" uid="uid://ctfk1pv4y6xrf" path="res://assets/audio/sfx/Placeholder_HoldBill_Foley_Movement2.wav" id="11_xcdah"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ejbd"]
 size = Vector2(492, 201)
@@ -75,6 +79,20 @@ tracks/2/keys = {
 "method": &"SetIsSwipable"
 }]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SlideSFX")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t8v7m"]
 _data = {
@@ -115,3 +133,11 @@ text = "REAL"
 [node name="Swipable" type="Node" parent="." unique_id=231689389]
 script = ExtResource("1_vl5p3")
 minSwipeDistance = 15.0
+
+[node name="SlideSFX" type="AudioStreamPlayer2D" parent="." unique_id=374562003]
+stream = ExtResource("8_ie4eh")
+
+[node name="MovementSFX" type="AudioStreamPlayer2D" parent="." unique_id=1924045283]
+volume_db = 2.0
+script = ExtResource("9_88khl")
+streams = Array[AudioStream]([ExtResource("10_c8624"), ExtResource("11_xcdah")])
