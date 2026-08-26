@@ -4,6 +4,8 @@ using System;
 public partial class GameHUD : CanvasLayer {
 	private Label _timer;
 	private Label _score;
+
+	private WrongIndicator _wrongIndicator;
 	// private TextureButton _zoomButton;
 
 	[Export]
@@ -14,9 +16,11 @@ public partial class GameHUD : CanvasLayer {
 
 		_timer = GetNode<Label>("Timer");
 		_score = GetNode<Label>("Score");
+		_wrongIndicator = GetNode<WrongIndicator>("WrongIndicator");
 		// _zoomButton = GetNode<TextureButton>("ZoomButton");
 
 		gameManager.ScoreUpdate += OnScoreUpdate;
+		gameManager.BillWrong += OnBillWrong;
 		// _zoomButton.Pressed += OnZoomButtonPressed;
 	}
 
@@ -40,4 +44,8 @@ public partial class GameHUD : CanvasLayer {
 	// private void OnZoomButtonPressed() {
 	// 	gameManager.toggleIsZoomed();
 	// }
+
+	private void OnBillWrong() {
+		_wrongIndicator.PlayWrongAnimation();
+	}
 }

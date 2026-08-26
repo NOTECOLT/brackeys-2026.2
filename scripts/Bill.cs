@@ -24,8 +24,6 @@ public partial class Bill : RigidBody2D {
         if (isReal) {
             _tempBillSprite.Texture = _realTempSprite;
         } else {
-            GD.Randomize();
-
             _tempBillSprite.Texture = _fakeTempSprites[GD.Randi() % _fakeTempSprites.Length];
         }
     }

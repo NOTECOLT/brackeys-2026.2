@@ -25,6 +25,9 @@ public partial class GameManager : Node {
     public PackedScene bill;
 
     [Export]
+    public PackedScene floatingNumber;
+
+    [Export]
     public SwipeZone realBillZone;
 
     [Export]
@@ -39,6 +42,9 @@ public partial class GameManager : Node {
 
     [Signal]
     public delegate void ScoreUpdateEventHandler(int score);
+
+    [Signal]
+    public delegate void BillWrongEventHandler();
     
     [Signal]
     public delegate void SetZoomEventHandler(bool isZoomed);
@@ -111,11 +117,13 @@ public partial class GameManager : Node {
 
     private void OnRealBillSwiped(bool billIsReall) {
         if (billIsReall) BillSwipedCorrect();
+        else BillSwipedWrong();
         OnBillSwiped();
     }
 
     private void OnFakeBillSwiped(bool billIsReall) {
         if (!billIsReall) BillSwipedCorrect();
+        else BillSwipedWrong();
         OnBillSwiped();
     }
     
@@ -127,5 +135,18 @@ public partial class GameManager : Node {
         timeLeft += timeBonus;
         _score += 1;
         EmitSignal(SignalName.ScoreUpdate, _score);
+
+
+        Node2D newFloatingNumber = floatingNumber.Instantiate<Node2D>();
+        Label label = newFloatingNumber.GetNode<Label>("./Label");
+        label.Text = $"+{(int)timeBonus}s";
+
+        // CallDeferred pushes the function call to the end of the current frame.
+        // Godot forbids physics state alterations (add new node) while it processes collisions
+        CallDeferred(MethodName.AddChild, newFloatingNumber);
+    }
+
+    private void BillSwipedWrong() {
+        EmitSignal(SignalName.BillWrong);
     }
 }
