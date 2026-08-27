@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="WeightedSprite" format=3 uid="uid://b250563gp4on6"]
+
+[ext_resource type="Script" uid="uid://dcb555ihsgqwk" path="res://scripts/resources/WeightedSprite.cs" id="1_h3ckj"]
+[ext_resource type="Texture2D" uid="uid://scexqsr6eccc" path="res://assets/art/bill/fake_elements/11 Text 1_FAKE_Blunt.png" id="2_ighp6"]
+
+[resource]
+script = ExtResource("1_h3ckj")
+sprite = ExtResource("2_ighp6")

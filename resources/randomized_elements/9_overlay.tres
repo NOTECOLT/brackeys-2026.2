@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="RandomizedElement" format=3 uid="uid://7rrxx7yb3c6c"]
 
 [ext_resource type="Script" uid="uid://cr31sttr6nmg" path="res://scripts/resources/RandomizedElement.cs" id="1_iuqkg"]
-[ext_resource type="Texture2D" uid="uid://d180fpos8uww4" path="res://assets/art/bill/fake_elements/9 Overlay_FAKE_Blunt.png" id="1_ktbln"]
-[ext_resource type="Texture2D" uid="uid://b1lnrtjrhd3xv" path="res://assets/art/bill/fake_elements/9 Overlay_FAKE_Subtle.png" id="2_r84ml"]
-[ext_resource type="Texture2D" uid="uid://cq1aapwyy8xk3" path="res://assets/art/bill/real_elements/9 Overlay_REAL.png" id="3_ystu3"]
+[ext_resource type="Resource" uid="uid://djjp61mecy0ym" path="res://resources/weighted_sprites/bill/fake_elements/blunt/9_overlay_fake_b1.tres" id="1_ktbln"]
+[ext_resource type="Resource" uid="uid://dcve5pxx3uniw" path="res://resources/weighted_sprites/bill/fake_elements/subtle/9_overlay_fake_s1.tres" id="2_r84ml"]
+[ext_resource type="Resource" uid="uid://cj34bsbjirelu" path="res://resources/weighted_sprites/bill/real_elements/9_overlay_real.tres" id="3_ystu3"]
 
 [resource]
 script = ExtResource("1_iuqkg")
-realSprites = Array[Texture2D]([ExtResource("3_ystu3")])
-fakeSprites = Array[Texture2D]([ExtResource("1_ktbln"), ExtResource("2_r84ml")])
+realSprites = Array[Object]([ExtResource("3_ystu3")])
+fakeSprites = Array[Object]([ExtResource("1_ktbln"), ExtResource("2_r84ml")])

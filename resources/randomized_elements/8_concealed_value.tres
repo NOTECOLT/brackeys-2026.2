@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="RandomizedElement" format=3 uid="uid://crn877son6gnk"]
 
 [ext_resource type="Script" uid="uid://cr31sttr6nmg" path="res://scripts/resources/RandomizedElement.cs" id="1_a6ppw"]
-[ext_resource type="Texture2D" uid="uid://cxcj2aqjbx6v7" path="res://assets/art/bill/fake_elements/8 Concealed Value_FAKE_Blunt.png" id="1_kduld"]
-[ext_resource type="Texture2D" uid="uid://bufeg04a3nlja" path="res://assets/art/bill/fake_elements/8 Concealed Value_FAKE_Subtle.png" id="2_q5u0j"]
-[ext_resource type="Texture2D" uid="uid://dqii166k1bhxl" path="res://assets/art/bill/real_elements/8 Concealed Value_REAL.png" id="3_bvo00"]
+[ext_resource type="Resource" uid="uid://becj8mie3i2sk" path="res://resources/weighted_sprites/bill/fake_elements/blunt/8_concealed_value_fake_b1.tres" id="1_kduld"]
+[ext_resource type="Resource" uid="uid://buiknlhlgdg47" path="res://resources/weighted_sprites/bill/fake_elements/subtle/8_concealed_value_fake_s1.tres" id="2_q5u0j"]
+[ext_resource type="Resource" uid="uid://brwghq052or0" path="res://resources/weighted_sprites/bill/real_elements/8_concealed_value_real.tres" id="3_bvo00"]
 
 [resource]
 script = ExtResource("1_a6ppw")
-realSprites = Array[Texture2D]([ExtResource("3_bvo00")])
-fakeSprites = Array[Texture2D]([ExtResource("1_kduld"), ExtResource("2_q5u0j")])
+realSprites = Array[Object]([ExtResource("3_bvo00")])
+fakeSprites = Array[Object]([ExtResource("1_kduld"), ExtResource("2_q5u0j")])

@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="RandomizedElement" format=3 uid="uid://sj2mwesjfhiy"]
 
 [ext_resource type="Script" uid="uid://cr31sttr6nmg" path="res://scripts/resources/RandomizedElement.cs" id="1_pom7r"]
-[ext_resource type="Texture2D" uid="uid://bbs1api0j7nm7" path="res://assets/art/bill/fake_elements/14 Text F12HXXX_FAKE_Blunt.png" id="1_rfprp"]
-[ext_resource type="Texture2D" uid="uid://b26dc7cu3af1v" path="res://assets/art/bill/fake_elements/14 Text F12HXXX_FAKE_Subtle1.png" id="2_x8jgm"]
-[ext_resource type="Texture2D" uid="uid://0ni7fsoeoxu2" path="res://assets/art/bill/real_elements/14 Text F12HXXX_REAL.png" id="3_qwpjq"]
+[ext_resource type="Resource" uid="uid://cbrdoltip5ggj" path="res://resources/weighted_sprites/bill/fake_elements/blunt/14_serial_right_fake_b1.tres" id="1_rfprp"]
+[ext_resource type="Resource" uid="uid://bvei3fltaxd23" path="res://resources/weighted_sprites/bill/fake_elements/subtle/14_serial_right_fake_s1.tres" id="2_x8jgm"]
+[ext_resource type="Resource" uid="uid://d2yf4b6ksm8pd" path="res://resources/weighted_sprites/bill/real_elements/14_serial_right_real.tres" id="3_qwpjq"]
 
 [resource]
 script = ExtResource("1_pom7r")
-realSprites = Array[Texture2D]([ExtResource("3_qwpjq")])
-fakeSprites = Array[Texture2D]([ExtResource("1_rfprp"), ExtResource("2_x8jgm")])
+realSprites = Array[Object]([ExtResource("3_qwpjq")])
+fakeSprites = Array[Object]([ExtResource("1_rfprp"), ExtResource("2_x8jgm")])

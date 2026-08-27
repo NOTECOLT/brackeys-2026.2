@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="RandomizedElement" format=3 uid="uid://dbuwqqw87jq6p"]
 
 [ext_resource type="Script" uid="uid://cr31sttr6nmg" path="res://scripts/resources/RandomizedElement.cs" id="1_5a8l6"]
-[ext_resource type="Texture2D" uid="uid://c25yyenn62bxp" path="res://assets/art/bill/fake_elements/7 George Fishington_FAKE_Blunt.png" id="1_q0wv4"]
-[ext_resource type="Texture2D" uid="uid://sgi7tednbegu" path="res://assets/art/bill/fake_elements/7 George Fishington_FAKE_Subtle.png" id="2_5n4kk"]
-[ext_resource type="Texture2D" uid="uid://c2eeu8vxrtsf2" path="res://assets/art/bill/real_elements/7 George Fishington_REAL.png" id="3_h653f"]
+[ext_resource type="Resource" uid="uid://dfmuvjbtr5e6u" path="res://resources/weighted_sprites/bill/real_elements/7_george_real.tres" id="1_jqe0i"]
+[ext_resource type="Resource" uid="uid://pfsrgkeovspi" path="res://resources/weighted_sprites/bill/fake_elements/blunt/7_george_fake_b1.tres" id="1_q0wv4"]
+[ext_resource type="Resource" uid="uid://er825ysirlfo" path="res://resources/weighted_sprites/bill/fake_elements/subtle/7_george_fake_s1.tres" id="2_5n4kk"]
 
 [resource]
 script = ExtResource("1_5a8l6")
-realSprites = Array[Texture2D]([ExtResource("3_h653f")])
-fakeSprites = Array[Texture2D]([ExtResource("1_q0wv4"), ExtResource("2_5n4kk")])
+realSprites = Array[Object]([ExtResource("1_jqe0i")])
+fakeSprites = Array[Object]([ExtResource("1_q0wv4"), ExtResource("2_5n4kk")])

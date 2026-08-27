@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="RandomizedElement" format=3 uid="uid://bs82toaelvfn2"]
 
-[ext_resource type="Texture2D" uid="uid://bqlodabfngpns" path="res://assets/art/bill/fake_elements/6 Security Thread_FAKE_Blunt.png" id="1_413c0"]
+[ext_resource type="Resource" uid="uid://b6ocjh0qvpbsu" path="res://resources/weighted_sprites/bill/fake_elements/blunt/6_security_thread_fake_b1.tres" id="1_413c0"]
 [ext_resource type="Script" uid="uid://cr31sttr6nmg" path="res://scripts/resources/RandomizedElement.cs" id="1_mv447"]
-[ext_resource type="Texture2D" uid="uid://deej15g72oyu6" path="res://assets/art/bill/fake_elements/6 Security Thread_FAKE_Subtle.png" id="2_lxe45"]
-[ext_resource type="Texture2D" uid="uid://bacvtsvfetrem" path="res://assets/art/bill/real_elements/6 Security Thread_REAL.png" id="3_cxaa0"]
+[ext_resource type="Resource" uid="uid://b6ya0s2igexnq" path="res://resources/weighted_sprites/bill/fake_elements/subtle/6_security_thread_fake_s1.tres" id="2_lxe45"]
+[ext_resource type="Resource" uid="uid://c7kitn03vqbel" path="res://resources/weighted_sprites/bill/real_elements/6_security_back_real.tres" id="3_cxaa0"]
 
 [resource]
 script = ExtResource("1_mv447")
-realSprites = Array[Texture2D]([ExtResource("3_cxaa0")])
-fakeSprites = Array[Texture2D]([ExtResource("1_413c0"), ExtResource("2_lxe45")])
+realSprites = Array[Object]([ExtResource("3_cxaa0")])
+fakeSprites = Array[Object]([ExtResource("1_413c0"), ExtResource("2_lxe45")])

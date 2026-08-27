@@ -3,12 +3,18 @@ using System;
 
 /// <summary>
 /// Defines an element that can be randomized
+/// 
+/// Each RandomizedElement contains data on real & fake counterparts
 /// </summary>
 [GlobalClass]
 public partial class RandomizedElement : Resource {
     [Export]
-    public Texture2D[] realSprites;
+    public WeightedSprite[] realSprites;
 
     [Export]
-    public Texture2D[] fakeSprites;
+    public WeightedSprite[] fakeSprites;
+
+    public void GenerateRandomFakeSprite() {
+        
+    }
 }

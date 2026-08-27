@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="WeightedSprite" format=3 uid="uid://dkqp72sx2i5na"]
+
+[ext_resource type="Script" uid="uid://dcb555ihsgqwk" path="res://scripts/resources/WeightedSprite.cs" id="1_g143v"]
+[ext_resource type="Texture2D" uid="uid://yyafcb0m3wxv" path="res://assets/art/bill/fake_elements/2 Parallelogram 1_FAKE_Subtle.png" id="2_eid10"]
+
+[resource]
+script = ExtResource("1_g143v")
+sprite = ExtResource("2_eid10")

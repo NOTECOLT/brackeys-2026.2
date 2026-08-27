@@ -1,8 +1,11 @@
 [gd_resource type="Resource" script_class="RandomizedElement" format=3 uid="uid://dywcsubix67c"]
 
+[ext_resource type="Resource" uid="uid://dc4ssfv3j8quo" path="res://resources/weighted_sprites/bill/fake_elements/blunt/10_text_left_fake_b1.tres" id="1_c83dv"]
 [ext_resource type="Script" uid="uid://cr31sttr6nmg" path="res://scripts/resources/RandomizedElement.cs" id="1_ulvv1"]
+[ext_resource type="Resource" uid="uid://c278cwf8mvba2" path="res://resources/weighted_sprites/bill/fake_elements/subtle/10_text_left_fake_s1.tres" id="2_k0715"]
+[ext_resource type="Resource" uid="uid://wn03bj6c4xre" path="res://resources/weighted_sprites/bill/real_elements/10_text_left_real.tres" id="3_4d3vk"]
 
 [resource]
 script = ExtResource("1_ulvv1")
-realSprites = null
-fakeSprites = null
+realSprites = Array[Object]([ExtResource("3_4d3vk")])
+fakeSprites = Array[Object]([ExtResource("1_c83dv"), ExtResource("2_k0715")])

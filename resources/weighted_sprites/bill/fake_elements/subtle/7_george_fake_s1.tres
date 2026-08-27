@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="WeightedSprite" format=3 uid="uid://er825ysirlfo"]
+
+[ext_resource type="Script" uid="uid://dcb555ihsgqwk" path="res://scripts/resources/WeightedSprite.cs" id="1_xedx3"]
+[ext_resource type="Texture2D" uid="uid://sgi7tednbegu" path="res://assets/art/bill/fake_elements/7 George Fishington_FAKE_Subtle.png" id="2_m0y6n"]
+
+[resource]
+script = ExtResource("1_xedx3")
+sprite = ExtResource("2_m0y6n")
