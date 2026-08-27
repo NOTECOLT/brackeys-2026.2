@@ -54,8 +54,14 @@ public partial class GameManager : Node {
 
     private bool _isZoomed = false;
 
+    private AudioStreamPlayer2D _correctSFX;
+    private AudioStreamPlayer2D _wrongSFX; 
+
     public override void _Ready() {
         base._Ready();
+
+        _correctSFX = GetNode<AudioStreamPlayer2D>("CorrectSFX");
+        _wrongSFX = GetNode<AudioStreamPlayer2D>("WrongSFX");
 
         // Set Random Seed based on time
         GD.Randomize();
@@ -136,10 +142,11 @@ public partial class GameManager : Node {
         _score += 1;
         EmitSignal(SignalName.ScoreUpdate, _score);
 
-
         Node2D newFloatingNumber = floatingNumber.Instantiate<Node2D>();
         Label label = newFloatingNumber.GetNode<Label>("./Label");
         label.Text = $"+{(int)timeBonus}s";
+
+        _correctSFX.Play();
 
         // CallDeferred pushes the function call to the end of the current frame.
         // Godot forbids physics state alterations (add new node) while it processes collisions
@@ -148,5 +155,7 @@ public partial class GameManager : Node {
 
     private void BillSwipedWrong() {
         EmitSignal(SignalName.BillWrong);
+
+        _wrongSFX.Play();
     }
 }
