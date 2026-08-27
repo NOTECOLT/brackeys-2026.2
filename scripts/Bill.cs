@@ -2,29 +2,63 @@ using Godot;
 using System;
 
 public partial class Bill : RigidBody2D {
+    [Export]
+    public int totalFakeElements = 5;
+
     /// <summary>
     /// True if the bill is real, false if fake
     /// </summary>
     [Export]
     public bool isReal;
 
+    /// <summary>
+    /// Actual game object holding bill elements. These are spawned dynamically
+    /// </summary>
     [Export]
-    public Texture2D _realTempSprite;
+    public PackedScene billLayer;
 
+    /// <summary>
+    /// Each RandomizedElement contains data on real & fake counterparts
+    /// </summary>
     [Export]
-    public Texture2D[] _fakeTempSprites;
+    public RandomizedElement[] billElements;
 
-
-    private Sprite2D _tempBillSprite;
+    private Node2D _layerParent;
 
     public override void _Ready() {
         base._Ready();
 
-        _tempBillSprite = GetNode<Sprite2D>("PositionWrapper/Sprite2D");
-        if (isReal) {
-            _tempBillSprite.Texture = _realTempSprite;
-        } else {
-            _tempBillSprite.Texture = _fakeTempSprites[GD.Randi() % _fakeTempSprites.Length];
+        _layerParent = GetNode<Node2D>("PositionWrapper");
+
+        // The number of fake elements to be generated IF the bill isnt real
+        int fakeRemaining = 0;
+        if (!isReal) {
+            fakeRemaining = ((int)GD.Randi() % totalFakeElements) + 1;
+        }
+        
+        int elementsRemaining = billElements.Length;
+        foreach (RandomizedElement billElement in billElements) {
+            Node2D newBillLayer = billLayer.Instantiate<Node2D>();
+            Sprite2D layerSprite = newBillLayer.GetNode<Sprite2D>(".");
+
+            bool wasFaked = false;
+            if (!isReal && fakeRemaining > 0) {
+                // if the bill isn't real, then randomly decide which elements will be faked
+
+                if (GD.Randf() < (float)fakeRemaining / elementsRemaining) {
+                    layerSprite.Texture = billElement.GenerateRandomFakeSprite();
+                    fakeRemaining--;
+                    wasFaked = true;
+                }
+            }
+
+            // If bill is real or the specific element wasnt faked, then generate real sprite
+            if (isReal || !wasFaked) {
+                layerSprite.Texture = billElement.GenerateRandomRealSprite();
+            }
+
+            _layerParent.AddChild(newBillLayer);
+            elementsRemaining--;
         }
     }
 }

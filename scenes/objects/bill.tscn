@@ -1,19 +1,30 @@
 [gd_scene format=3 uid="uid://cyp8oaf2tsvrt"]
 
 [ext_resource type="Script" uid="uid://ctchepikbyrhg" path="res://scripts/Bill.cs" id="1_cc68x"]
-[ext_resource type="Texture2D" uid="uid://ehkfnkotujn6" path="res://assets/temp/temp_bill.jpg" id="1_h4yh8"]
 [ext_resource type="Script" uid="uid://bvob8q3jhk1rd" path="res://scripts/Swipable.cs" id="1_vl5p3"]
-[ext_resource type="Texture2D" uid="uid://b81pfagykjayr" path="res://assets/temp/temp_bill_fake1.jpg" id="3_q7tye"]
-[ext_resource type="Texture2D" uid="uid://dcbgelcnuylrr" path="res://assets/temp/temp_bill_fake2.jpg" id="4_ie4eh"]
-[ext_resource type="Texture2D" uid="uid://cdq8g73362kf" path="res://assets/temp/temp_bill_fake3.jpg" id="5_88khl"]
-[ext_resource type="Texture2D" uid="uid://c70grjwgxjh7a" path="res://assets/temp/temp_bill_fake4.jpg" id="6_7yevk"]
+[ext_resource type="Resource" uid="uid://ddagipab2x05m" path="res://resources/randomized_elements/1_base.tres" id="2_n7h6a"]
+[ext_resource type="Resource" uid="uid://dubpvquxabffp" path="res://resources/randomized_elements/2_parallelogram_1.tres" id="3_47urd"]
+[ext_resource type="Resource" uid="uid://dh8t7rfumfw46" path="res://resources/randomized_elements/3_parallelogram_2.tres" id="4_v4eam"]
+[ext_resource type="Resource" uid="uid://casq34oaqtm8u" path="res://resources/randomized_elements/4_image_back.tres" id="5_io5w0"]
+[ext_resource type="Resource" uid="uid://cjomnbqx7lbo3" path="res://resources/randomized_elements/5_circle_back.tres" id="6_vt6u1"]
+[ext_resource type="Resource" uid="uid://bs82toaelvfn2" path="res://resources/randomized_elements/6_security_thread.tres" id="7_hxqyd"]
+[ext_resource type="Resource" uid="uid://dbuwqqw87jq6p" path="res://resources/randomized_elements/7_george.tres" id="8_dscca"]
 [ext_resource type="AudioStream" uid="uid://caho7mh1tpuhm" path="res://assets/audio/sfx/Placeholder_Foley_BillSlide.wav" id="8_ie4eh"]
 [ext_resource type="Script" uid="uid://d3683u048akxa" path="res://scripts/audio/RandomSFXPlayer.cs" id="9_88khl"]
+[ext_resource type="Resource" uid="uid://crn877son6gnk" path="res://resources/randomized_elements/8_concealed_value.tres" id="9_t4k3i"]
 [ext_resource type="AudioStream" uid="uid://cd7tt6orf6tql" path="res://assets/audio/sfx/Placeholder_HoldBill_Foley_Movement1.wav" id="10_c8624"]
+[ext_resource type="Resource" uid="uid://7rrxx7yb3c6c" path="res://resources/randomized_elements/9_overlay.tres" id="10_qmonm"]
+[ext_resource type="Resource" uid="uid://dywcsubix67c" path="res://resources/randomized_elements/10_text_left.tres" id="11_t4vkw"]
 [ext_resource type="AudioStream" uid="uid://ctfk1pv4y6xrf" path="res://assets/audio/sfx/Placeholder_HoldBill_Foley_Movement2.wav" id="11_xcdah"]
+[ext_resource type="Resource" uid="uid://dv5qmd3h63jeb" path="res://resources/randomized_elements/11_text_right.tres" id="12_7gm25"]
+[ext_resource type="Resource" uid="uid://kgmfxyubdaim" path="res://resources/randomized_elements/12_text_center.tres" id="13_sswl5"]
+[ext_resource type="Resource" uid="uid://bd7ond145cxhb" path="res://resources/randomized_elements/13_serial_left.tres" id="14_qsmco"]
+[ext_resource type="Resource" uid="uid://sj2mwesjfhiy" path="res://resources/randomized_elements/14_serial_right.tres" id="15_nukl7"]
+[ext_resource type="Resource" uid="uid://ds4qihqrnyk7k" path="res://resources/randomized_elements/15_signature.tres" id="16_u2txv"]
+[ext_resource type="PackedScene" uid="uid://dn5hckdmubwtu" path="res://scenes/objects/bill_layer.tscn" id="17_n7h6a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ejbd"]
-size = Vector2(492, 201)
+size = Vector2(704, 272)
 
 [sub_resource type="Animation" id="Animation_h4yh8"]
 length = 0.001
@@ -103,11 +114,10 @@ _data = {
 [node name="Bill" type="RigidBody2D" unique_id=1455309647]
 gravity_scale = 0.0
 script = ExtResource("1_cc68x")
-_realTempSprite = ExtResource("1_h4yh8")
-_fakeTempSprites = Array[Texture2D]([ExtResource("3_q7tye"), ExtResource("4_ie4eh"), ExtResource("5_88khl"), ExtResource("6_7yevk")])
+billLayer = ExtResource("17_n7h6a")
+billElements = Array[Object]([ExtResource("2_n7h6a"), ExtResource("3_47urd"), ExtResource("4_v4eam"), ExtResource("5_io5w0"), ExtResource("6_vt6u1"), ExtResource("7_hxqyd"), ExtResource("8_dscca"), ExtResource("9_t4k3i"), ExtResource("10_qmonm"), ExtResource("11_t4vkw"), ExtResource("12_7gm25"), ExtResource("13_sswl5"), ExtResource("14_qsmco"), ExtResource("15_nukl7"), ExtResource("16_u2txv")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=714117665]
-position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_0ejbd")
 
 [node name="PositionWrapper" type="Node2D" parent="." unique_id=623221735]
@@ -116,19 +126,6 @@ shape = SubResource("RectangleShape2D_0ejbd")
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_t8v7m")
 autoplay = &"enter"
-
-[node name="Sprite2D" type="Sprite2D" parent="PositionWrapper" unique_id=821713250]
-texture = ExtResource("1_h4yh8")
-
-[node name="TempBillLabel" type="Label" parent="PositionWrapper" unique_id=1261197097]
-visible = false
-offset_left = -120.0
-offset_top = -72.0
-offset_right = 128.0
-offset_bottom = 65.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 100
-text = "REAL"
 
 [node name="Swipable" type="Node" parent="." unique_id=231689389]
 script = ExtResource("1_vl5p3")

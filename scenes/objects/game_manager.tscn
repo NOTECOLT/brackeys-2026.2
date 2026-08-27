@@ -1,6 +1,16 @@
 [gd_scene format=3 uid="uid://it433dksbr3h"]
 
 [ext_resource type="Script" uid="uid://btrnp4ce8pc1k" path="res://scripts/GameManager.cs" id="1_hwd4i"]
+[ext_resource type="AudioStream" uid="uid://behcmv4tm8keq" path="res://assets/audio/sfx/Placeholder_Correct.wav" id="2_m4s6b"]
+[ext_resource type="AudioStream" uid="uid://b8d7lfcqsi82v" path="res://assets/audio/sfx/Placeholder_Wrong.wav" id="3_0jac5"]
 
 [node name="GameManager" type="Node" unique_id=167162442]
 script = ExtResource("1_hwd4i")
+
+[node name="CorrectSFX" type="AudioStreamPlayer2D" parent="." unique_id=239724287]
+stream = ExtResource("2_m4s6b")
+volume_db = -2.0
+
+[node name="WrongSFX" type="AudioStreamPlayer2D" parent="." unique_id=979675096]
+stream = ExtResource("3_0jac5")
+volume_db = -2.0

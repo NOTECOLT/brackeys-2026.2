@@ -31,9 +31,12 @@ fill_from = Vector2(0.49658704, 0.4795222)
 fill_to = Vector2(0.80716723, 0.8583618)
 
 [node name="Main" type="Node2D" unique_id=1139027406]
+metadata/_edit_horizontal_guides_ = [304.0]
+metadata/_edit_vertical_guides_ = [696.0, 1056.0]
 
 [node name="GameManager" parent="." unique_id=167162442 node_paths=PackedStringArray("realBillZone", "fakeBillZone") instance=ExtResource("1_lbhrr")]
-timeLimit = 10.0
+timeLimit = 20.0
+timeBonus = 3.0
 bill = ExtResource("2_iywne")
 floatingNumber = ExtResource("3_gee14")
 realBillZone = NodePath("../RealBillSwipeZone")
@@ -62,10 +65,10 @@ theme_override_font_sizes/font_size = 40
 text = "FAKE"
 
 [node name="RealBillSwipeZone" parent="." unique_id=970888838 instance=ExtResource("3_p57ef")]
-position = Vector2(651, 0)
+position = Vector2(1056, -24)
 
 [node name="FakeBillSwipeZone" parent="." unique_id=156311024 instance=ExtResource("3_p57ef")]
-position = Vector2(-685, 6)
+position = Vector2(-1056, -9)
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=1055446424]
 stream = ExtResource("6_p57ef")
@@ -76,6 +79,7 @@ autoplay = true
 gameManager = NodePath("../GameManager")
 
 [node name="GameCamera" parent="." unique_id=1484927458 node_paths=PackedStringArray("gameManager") instance=ExtResource("7_u5sy4")]
+unZoomedValue = 0.8
 zoomedValue = 2.0
 gameManager = NodePath("../GameManager")
 
@@ -89,7 +93,7 @@ texture = SubResource("GradientTexture2D_0ejbd")
 [node name="PointLight2D2" type="PointLight2D" parent="." unique_id=1372708455]
 position = Vector2(4.5474735e-13, -0.99999905)
 scale = Vector2(14.000001, 11.000001)
-color = Color(0.9872566, 0.87723106, 0.67863166, 1)
+color = Color(0.46558243, 0.34676906, 0.087723084, 1)
 energy = 0.5
 texture = SubResource("GradientTexture2D_543kl")
 
