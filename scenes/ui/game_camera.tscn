@@ -41,6 +41,7 @@ _data = {
 
 [node name="GameCamera" type="Node2D" unique_id=1484927458]
 script = ExtResource("1_qevj4")
+zoomSpeed = 4.0
 zoomedValue = 1.75
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1759514387]
