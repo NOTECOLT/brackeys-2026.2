@@ -6,6 +6,12 @@ public partial class GameManager : Node {
     [Export]
     public double timeLeft;
 
+    /// <summary>
+    /// Used for dynamic, point at which audio will start to change into frantic mode
+    /// </summary>
+    [Export]
+    public double timeFrantic = 12.0f;
+
     /* -- Game Settings -- */
 
     /// <summary>
@@ -32,6 +38,9 @@ public partial class GameManager : Node {
 
     [Export]
     public SwipeZone fakeBillZone;
+
+    [Export]
+    public DynamicAudio dynamicAudio;
 
     /* -- Signals -- */
     /// <summary>
@@ -62,6 +71,9 @@ public partial class GameManager : Node {
 
         _correctSFX = GetNode<AudioStreamPlayer2D>("CorrectSFX");
         _wrongSFX = GetNode<AudioStreamPlayer2D>("WrongSFX");
+
+
+        /* -- Bill Spawning & Game Logic -- */
 
         // Set Random Seed based on time
         GD.Randomize();
@@ -94,6 +106,12 @@ public partial class GameManager : Node {
         /* -- Timer Processing -- */
         if (timeLeft > 0) {
             timeLeft -= delta;
+
+            if (timeLeft < timeFrantic) {
+                dynamicAudio.SetActiveStream(1);
+            } else {
+                dynamicAudio.SetActiveStream(0);
+            }
         } else {
             GetTree().ChangeSceneToFile("res://scenes//game_over.tscn");
         }

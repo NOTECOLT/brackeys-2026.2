@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://ddt88wg0xbckd" path="res://scenes/ui/floating_number.tscn" id="3_gee14"]
 [ext_resource type="PackedScene" uid="uid://bdu6wdhtev10f" path="res://scenes/objects/swipe_zone.tscn" id="3_p57ef"]
 [ext_resource type="PackedScene" uid="uid://bdouadh5oqfmh" path="res://scenes/ui/game_hud.tscn" id="4_u5sy4"]
-[ext_resource type="AudioStream" uid="uid://b3gt8hu3tplki" path="res://assets/audio/bgm/placeholder_moody_tensionbgmB.wav" id="6_p57ef"]
+[ext_resource type="AudioStream" uid="uid://b6127h3qbc6cw" path="res://assets/audio/bgm/game_layer_AB.tres" id="6_gee14"]
 [ext_resource type="PackedScene" uid="uid://b8fwqykyklaq5" path="res://scenes/ui/game_camera.tscn" id="7_u5sy4"]
+[ext_resource type="Script" uid="uid://b6y5g00dwyuse" path="res://scripts/audio/DynamicAudio.cs" id="9_0tnpc"]
 
 [sub_resource type="Gradient" id="Gradient_gee14"]
 offsets = PackedFloat32Array(0, 0.9)
@@ -34,13 +35,14 @@ fill_to = Vector2(0.80716723, 0.8583618)
 metadata/_edit_horizontal_guides_ = [304.0]
 metadata/_edit_vertical_guides_ = [696.0, 1056.0]
 
-[node name="GameManager" parent="." unique_id=167162442 node_paths=PackedStringArray("realBillZone", "fakeBillZone") instance=ExtResource("1_lbhrr")]
-timeLimit = 20.0
+[node name="GameManager" parent="." unique_id=167162442 node_paths=PackedStringArray("realBillZone", "fakeBillZone", "dynamicAudio") instance=ExtResource("1_lbhrr")]
+timeLimit = 25.0
 timeBonus = 3.0
 bill = ExtResource("2_iywne")
 floatingNumber = ExtResource("3_gee14")
 realBillZone = NodePath("../RealBillSwipeZone")
 fakeBillZone = NodePath("../FakeBillSwipeZone")
+dynamicAudio = NodePath("../BGM")
 
 [node name="TableBackground" type="Sprite2D" parent="." unique_id=48266285]
 position = Vector2(3, 8)
@@ -70,11 +72,6 @@ position = Vector2(1056, -24)
 [node name="FakeBillSwipeZone" parent="." unique_id=156311024 instance=ExtResource("3_p57ef")]
 position = Vector2(-1056, -9)
 
-[node name="BGM" type="AudioStreamPlayer2D" parent="." unique_id=1055446424]
-stream = ExtResource("6_p57ef")
-volume_db = -3.0
-autoplay = true
-
 [node name="GameHUD" parent="." unique_id=675619086 node_paths=PackedStringArray("gameManager") instance=ExtResource("4_u5sy4")]
 gameManager = NodePath("../GameManager")
 
@@ -100,3 +97,11 @@ texture = SubResource("GradientTexture2D_543kl")
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1758278171]
 energy = 0.9
 blend_mode = 1
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=912998031]
+stream = ExtResource("6_gee14")
+volume_db = -5.0
+autoplay = true
+script = ExtResource("9_0tnpc")
+transitionSpeed = 10.0
+synchronizedStream = ExtResource("6_gee14")
