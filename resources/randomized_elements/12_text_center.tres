@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RandomizedElement" format=3 uid="uid://kgmfxyubdaim"]
+
+[ext_resource type="Script" uid="uid://cr31sttr6nmg" path="res://scripts/resources/RandomizedElement.cs" id="1_pa64k"]
+
+[resource]
+script = ExtResource("1_pa64k")
+realSprites = null
+fakeSprites = null

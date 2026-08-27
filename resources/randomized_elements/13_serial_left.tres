@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RandomizedElement" format=3 uid="uid://bd7ond145cxhb"]
+
+[ext_resource type="Texture2D" uid="uid://blhsw7p08sdba" path="res://assets/art/bill/fake_elements/13 Text F12HXXX_FAKE_Blunt.png" id="1_5grcy"]
+[ext_resource type="Script" uid="uid://cr31sttr6nmg" path="res://scripts/resources/RandomizedElement.cs" id="1_xmjey"]
+[ext_resource type="Texture2D" uid="uid://bmx1beymu0bhr" path="res://assets/art/bill/fake_elements/13 Text F12HXXX_FAKE_Subtle.png" id="2_o1toa"]
+[ext_resource type="Texture2D" uid="uid://by8gpw54qs4uj" path="res://assets/art/bill/real_elements/13 Text F12HXXX_REAL.png" id="3_42aai"]
+
+[resource]
+script = ExtResource("1_xmjey")
+realSprites = Array[Texture2D]([ExtResource("3_42aai")])
+fakeSprites = Array[Texture2D]([ExtResource("1_5grcy"), ExtResource("2_o1toa")])
