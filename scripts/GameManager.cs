@@ -122,9 +122,8 @@ public partial class GameManager : Node {
 
         Bill newBill = newBillNode.GetNode<Bill>(".");
 
-        // Randomly generate real or fake bill
-        int isReal = (int)(GD.Randi() % 2); // Generates 0 or 1
-        newBill.isReal = isReal == 0;
+        // Randomly generate real (40%) or fake bill. 
+        newBill.isReal = GD.Randf() < 0.4f;
 
         // CallDeferred pushes the function call to the end of the current frame.
         // Godot forbids physics state alterations (add new node) while it processes collisions
