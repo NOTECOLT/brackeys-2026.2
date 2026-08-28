@@ -10,74 +10,41 @@
 [ext_resource type="PackedScene" uid="uid://b8fwqykyklaq5" path="res://scenes/ui/game_camera.tscn" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://b6y5g00dwyuse" path="res://scripts/audio/DynamicAudio.cs" id="9_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://dvrsy0nojuwab" path="res://scenes/objects/reference_bill.tscn" id="10_vtaks"]
+[ext_resource type="Script" uid="uid://cfqvh3owl3xb5" path="res://scripts/ui/MainMenu.cs" id="11_kvpfn"]
+[ext_resource type="Script" uid="uid://bit18abjnasbg" path="res://scripts/ui/GameOver.cs" id="12_dinhu"]
 
-[sub_resource type="Gradient" id="Gradient_gee14"]
+[sub_resource type="Gradient" id="Gradient_vtaks"]
 offsets = PackedFloat32Array(0, 0.9)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_0ejbd"]
-gradient = SubResource("Gradient_gee14")
+gradient = SubResource("Gradient_vtaks")
 use_hdr = true
 fill = 1
 fill_from = Vector2(0.49317408, 0.5)
 fill_to = Vector2(0.79692835, 0.03242321)
 
-[sub_resource type="Gradient" id="Gradient_0tnpc"]
+[sub_resource type="Gradient" id="Gradient_kvpfn"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_543kl"]
-gradient = SubResource("Gradient_0tnpc")
+gradient = SubResource("Gradient_kvpfn")
 use_hdr = true
 fill = 1
 fill_from = Vector2(0.49658704, 0.4795222)
 fill_to = Vector2(0.80716723, 0.8583618)
 
-[node name="Main" type="Node2D" unique_id=1139027406]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dinhu"]
+light_mode = 1
 
-[node name="GameManager" parent="." unique_id=167162442 node_paths=PackedStringArray("realBillZone", "fakeBillZone", "dynamicAudio") instance=ExtResource("1_lbhrr")]
-timeLimit = 25.0
-timeBonus = 3.0
-bill = ExtResource("2_iywne")
-floatingNumber = ExtResource("3_gee14")
-realBillZone = NodePath("../RealBillSwipeZone")
-fakeBillZone = NodePath("../FakeBillSwipeZone")
-dynamicAudio = NodePath("../BGM")
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kvuet"]
+light_mode = 1
+
+[node name="Main" type="Node2D" unique_id=1139027406]
 
 [node name="TableBackground" type="Sprite2D" parent="." unique_id=48266285]
 position = Vector2(0, -20)
 texture = ExtResource("4_vtaks")
-
-[node name="RealLabel" type="Label" parent="." unique_id=710308401]
-offset_left = 379.0
-offset_top = -37.0
-offset_right = 475.0
-offset_bottom = 18.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-text = "REAL"
-
-[node name="FakeLabel" type="Label" parent="." unique_id=710035627]
-offset_left = -491.0
-offset_top = -32.0
-offset_right = -395.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-text = "FAKE"
-
-[node name="RealBillSwipeZone" parent="." unique_id=970888838 instance=ExtResource("3_p57ef")]
-position = Vector2(1056, -24)
-
-[node name="FakeBillSwipeZone" parent="." unique_id=156311024 instance=ExtResource("3_p57ef")]
-position = Vector2(-1056, -9)
-
-[node name="GameHUD" parent="." unique_id=675619086 node_paths=PackedStringArray("gameManager") instance=ExtResource("4_u5sy4")]
-gameManager = NodePath("../GameManager")
-
-[node name="GameCamera" parent="." unique_id=1484927458 node_paths=PackedStringArray("gameManager") instance=ExtResource("7_u5sy4")]
-unZoomedValue = 0.8
-zoomedValue = 2.0
-gameManager = NodePath("../GameManager")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1691988507]
 scale = Vector2(19.624998, 13.000001)
@@ -93,14 +60,39 @@ color = Color(0.46558243, 0.34676906, 0.087723084, 1)
 energy = 0.5
 texture = SubResource("GradientTexture2D_543kl")
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1758278171]
+[node name="Game" type="Node" parent="." unique_id=261947635]
+
+[node name="GameManager" parent="Game" unique_id=167162442 node_paths=PackedStringArray("realBillZone", "fakeBillZone", "dynamicAudio") instance=ExtResource("1_lbhrr")]
+timeLimit = 25.0
+timeBonus = 3.0
+bill = ExtResource("2_iywne")
+floatingNumber = ExtResource("3_gee14")
+realBillZone = NodePath("../RealBillSwipeZone")
+fakeBillZone = NodePath("../FakeBillSwipeZone")
+dynamicAudio = NodePath("../BGM")
+
+[node name="RealBillSwipeZone" parent="Game" unique_id=970888838 instance=ExtResource("3_p57ef")]
+position = Vector2(1056, -24)
+
+[node name="FakeBillSwipeZone" parent="Game" unique_id=156311024 instance=ExtResource("3_p57ef")]
+position = Vector2(-1056, -9)
+
+[node name="GameHUD" parent="Game" unique_id=675619086 node_paths=PackedStringArray("gameManager") instance=ExtResource("4_u5sy4")]
+gameManager = NodePath("../GameManager")
+
+[node name="GameCamera" parent="Game" unique_id=1484927458 node_paths=PackedStringArray("gameManager") instance=ExtResource("7_u5sy4")]
+unZoomedValue = 0.8
+zoomedValue = 2.0
+gameManager = NodePath("../GameManager")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Game" unique_id=1758278171]
 color = Color(0.7953939, 0.79539394, 0.7953939, 1)
 energy = 0.9
 blend_mode = 1
 range_z_min = 0
 range_z_max = 0
 
-[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=912998031]
+[node name="BGM" type="AudioStreamPlayer" parent="Game" unique_id=912998031]
 stream = ExtResource("6_gee14")
 volume_db = -5.0
 autoplay = true
@@ -108,4 +100,93 @@ script = ExtResource("9_0tnpc")
 transitionSpeed = 10.0
 synchronizedStream = ExtResource("6_gee14")
 
-[node name="ReferenceBill" parent="." unique_id=689262702 instance=ExtResource("10_vtaks")]
+[node name="ReferenceBill" parent="Game" unique_id=689262702 instance=ExtResource("10_vtaks")]
+
+[node name="MainMenu" type="Control" parent="." unique_id=857659088 node_paths=PackedStringArray("startGameButton")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -512.0
+offset_top = -384.0
+offset_right = 512.0
+offset_bottom = 376.0
+script = ExtResource("11_kvpfn")
+startGameButton = NodePath("StartGameButton")
+
+[node name="GameTitle" type="Label" parent="MainMenu" unique_id=441493134]
+material = SubResource("CanvasItemMaterial_dinhu")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -204.0
+offset_right = 144.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "trust no ONES"
+horizontal_alignment = 1
+
+[node name="StartGameButton" type="Button" parent="MainMenu" unique_id=93717495]
+material = SubResource("CanvasItemMaterial_kvuet")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -60.0
+offset_right = 133.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Start Game"
+
+[node name="GameOver" type="Control" parent="." unique_id=2036203356 node_paths=PackedStringArray("startGameButton")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -512.0
+offset_top = -384.0
+offset_right = 512.0
+offset_bottom = 376.0
+script = ExtResource("12_dinhu")
+startGameButton = NodePath("RestartGame")
+
+[node name="GameOver" type="Label" parent="GameOver" unique_id=1611556949]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -204.0
+offset_right = 144.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.898574, 0.16879839, 0.10678632, 1)
+theme_override_font_sizes/font_size = 64
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="RestartGame" type="Button" parent="GameOver" unique_id=506336803]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -60.0
+offset_right = 133.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Restart Game"

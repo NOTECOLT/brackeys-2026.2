@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class MainMenu : Control {
+public partial class GameOver : Control {
 	[Export]
 	public Button startGameButton;
 
@@ -12,6 +12,8 @@ public partial class MainMenu : Control {
 
 		_signalMgr.ChangeGameState += OnChangeGameState;
 		startGameButton.Pressed += OnStartGamePressed;
+
+		Hide();
 	}
 
 	private void OnStartGamePressed() {
@@ -19,7 +21,7 @@ public partial class MainMenu : Control {
 	}
 
 	private void OnChangeGameState(GameState state) {
-		if (state == GameState.MAIN_MENU) {
+		if (state == GameState.GAME_OVER) {
 			Show();
 		} else {
 			Hide();

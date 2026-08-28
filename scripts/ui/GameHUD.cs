@@ -2,32 +2,38 @@ using Godot;
 using System;
 
 public partial class GameHUD : CanvasLayer {
+	[Export]
+	public GameManager gameManager;
+
 	private Label _timer;
 	private Label _score;
 
 	private WrongIndicator _wrongIndicator;
-	// private TextureButton _zoomButton;
-
-	[Export]
-	public GameManager gameManager;
+	private SignalManager _signalMgr;
 
 	public override void _Ready() {
-		base._Ready();
-
+		_signalMgr = GetNode<SignalManager>(SignalManager.PATH);
 		_timer = GetNode<Label>("Timer");
 		_score = GetNode<Label>("Score");
 		_wrongIndicator = GetNode<WrongIndicator>("WrongIndicator");
-		// _zoomButton = GetNode<TextureButton>("ZoomButton");
-
+		
+		_signalMgr.ChangeGameState += OnChangeGameState;
 		gameManager.ScoreUpdate += OnScoreUpdate;
 		gameManager.BillWrong += OnBillWrong;
-		// _zoomButton.Pressed += OnZoomButtonPressed;
+
+		Hide();
 	}
 
 	public override void _Process(double delta) {
-		base._Process(delta);
-
 		SetTimerLabel(gameManager.timeLeft);
+	}
+
+	private void OnChangeGameState(GameState state) {
+		if (state == GameState.GAME) {
+			Show();
+		} else {
+			Hide();
+		}
 	}
 
 	private void OnScoreUpdate(int score) {
@@ -39,11 +45,6 @@ public partial class GameHUD : CanvasLayer {
 		double sec = Math.Abs(Math.Floor(time % 60d));
 		_timer.Text = $"{min}:{sec:00}";
 	}
-
-	// Disabled for now ~ (will use right click to activate zoom)
-	// private void OnZoomButtonPressed() {
-	// 	gameManager.toggleIsZoomed();
-	// }
 
 	private void OnBillWrong() {
 		_wrongIndicator.PlayWrongAnimation();

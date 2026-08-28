@@ -2,7 +2,12 @@ using Godot;
 using System;
 
 public partial class GameManager : Node {
+
     /* -- Public Values used for HUD & Game State -- */ 
+
+    [Export]
+    public GameState gameState;
+
     [Export]
     public double timeLeft;
 
@@ -57,12 +62,14 @@ public partial class GameManager : Node {
     private AudioStreamPlayer2D _correctSFX;
     private AudioStreamPlayer2D _wrongSFX; 
 
+    private SignalManager _signalMgr;
+
     public override void _Ready() {
         base._Ready();
 
+        _signalMgr = GetNode<SignalManager>(SignalManager.PATH);
         _correctSFX = GetNode<AudioStreamPlayer2D>("CorrectSFX");
         _wrongSFX = GetNode<AudioStreamPlayer2D>("WrongSFX");
-
 
         /* -- Bill Spawning & Game Logic -- */
 
@@ -70,32 +77,43 @@ public partial class GameManager : Node {
         GD.Randomize();
 
         // Add Signal Triggers
+        _signalMgr.ChangeGameState += OnChangeGameState;
         realBillZone.BillSwiped += OnRealBillSwiped;
         fakeBillZone.BillSwiped += OnFakeBillSwiped;
 
-        // Set initial game values
-        timeLeft = timeLimit;
-        _score = 0;
-        _isZoomed = false;
-
-        // Spawn first bill
-        SpawnBill();
+        gameState = GameState.MAIN_MENU;
     }
 
     public override void _Process(double delta) {
         base._Process(delta);
 
-        /* -- Timer Processing -- */
-        if (timeLeft > 0) {
-            timeLeft -= delta;
+        if (gameState == GameState.GAME) {
+            /* -- Timer Processing -- */
+            if (timeLeft > 0) {
+                timeLeft -= delta;
 
-            if (timeLeft < timeFrantic) {
-                dynamicAudio.SetActiveStream(1);
+                if (timeLeft < timeFrantic) {
+                    dynamicAudio.SetActiveStream(1);
+                } else {
+                    dynamicAudio.SetActiveStream(0);
+                }
             } else {
-                dynamicAudio.SetActiveStream(0);
-            }
-        } else {
-            GetTree().ChangeSceneToFile("res://scenes//game_over.tscn");
+                _signalMgr.EmitSignal(SignalManager.SignalName.ChangeGameState, (int)GameState.GAME_OVER);
+            }   
+        }
+    }
+
+    public void OnChangeGameState(GameState state) {
+        gameState = state;
+        
+        if (state == GameState.GAME) {
+            // Set initial game values
+            timeLeft = timeLimit;
+            _score = 0;
+            _isZoomed = false;
+
+            // Spawn first bill
+            SpawnBill();  
         }
     }
 

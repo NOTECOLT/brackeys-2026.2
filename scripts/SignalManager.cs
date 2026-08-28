@@ -11,4 +11,11 @@ public partial class SignalManager : Node {
     /// <param name="isShown">True if the reference is shown, false otherwise</param>
 	[Signal]
 	public delegate void ReferenceShowEventHandler(bool isShown);
+
+    /// <summary>
+    /// Sent whenever the game state is changed
+    /// </summary>
+    /// <param name="state"></param>
+    [Signal]
+    public delegate void ChangeGameStateEventHandler(GameState state);
 }

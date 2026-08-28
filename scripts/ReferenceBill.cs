@@ -24,13 +24,18 @@ public partial class ReferenceBill : Node2D {
 		_tooltip = GetNode<Label>("PositionWrapper/Tooltip");
 		_helpTimer = GetNode<Timer>("HelpTimer");
 
+		_signalMgr.ChangeGameState += OnChangeGameState;
 		_positionWrapper.InputEvent += OnInputEvent;
 		_helpTimer.Timeout += OnHelpTimerTimeout;	
+	}
 
-		_isShown = false;
+	private void OnChangeGameState(GameState state) {
+		if (state == GameState.GAME) {
+			_isShown = false;
 
-		_helpTimer.WaitTime = waitTimeTillShow;
-		_helpTimer.Start();
+			_helpTimer.WaitTime = waitTimeTillShow;
+			_helpTimer.Start();
+		}
 	}
 
     private void OnInputEvent(Node viewport, InputEvent @event, long shapeIdx) {
