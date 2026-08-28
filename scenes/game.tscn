@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://b6127h3qbc6cw" path="res://assets/audio/bgm/game_layer_AB.tres" id="6_gee14"]
 [ext_resource type="PackedScene" uid="uid://b8fwqykyklaq5" path="res://scenes/ui/game_camera.tscn" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://b6y5g00dwyuse" path="res://scripts/audio/DynamicAudio.cs" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://dvrsy0nojuwab" path="res://scenes/objects/reference_bill.tscn" id="10_vtaks"]
 
 [sub_resource type="Gradient" id="Gradient_gee14"]
 offsets = PackedFloat32Array(0, 0.9)
@@ -32,8 +33,6 @@ fill_from = Vector2(0.49658704, 0.4795222)
 fill_to = Vector2(0.80716723, 0.8583618)
 
 [node name="Main" type="Node2D" unique_id=1139027406]
-metadata/_edit_horizontal_guides_ = [304.0]
-metadata/_edit_vertical_guides_ = [696.0, 1056.0]
 
 [node name="GameManager" parent="." unique_id=167162442 node_paths=PackedStringArray("realBillZone", "fakeBillZone", "dynamicAudio") instance=ExtResource("1_lbhrr")]
 timeLimit = 25.0
@@ -48,7 +47,12 @@ dynamicAudio = NodePath("../BGM")
 position = Vector2(3, 8)
 texture = ExtResource("1_iywne")
 
+[node name="TableBackground2" type="Sprite2D" parent="." unique_id=1051859060]
+position = Vector2(3, 953)
+texture = ExtResource("1_iywne")
+
 [node name="RealLabel" type="Label" parent="." unique_id=710308401]
+visible = false
 offset_left = 379.0
 offset_top = -37.0
 offset_right = 475.0
@@ -58,6 +62,7 @@ theme_override_font_sizes/font_size = 40
 text = "REAL"
 
 [node name="FakeLabel" type="Label" parent="." unique_id=710035627]
+visible = false
 offset_left = -491.0
 offset_top = -32.0
 offset_right = -395.0
@@ -97,6 +102,8 @@ texture = SubResource("GradientTexture2D_543kl")
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1758278171]
 energy = 0.9
 blend_mode = 1
+range_z_min = 0
+range_z_max = 0
 
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=912998031]
 stream = ExtResource("6_gee14")
@@ -105,3 +112,5 @@ autoplay = true
 script = ExtResource("9_0tnpc")
 transitionSpeed = 10.0
 synchronizedStream = ExtResource("6_gee14")
+
+[node name="ReferenceBill" parent="." unique_id=689262702 instance=ExtResource("10_vtaks")]

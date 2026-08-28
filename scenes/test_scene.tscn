@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bhxroex0v380m"]
+
+[ext_resource type="PackedScene" uid="uid://dvrsy0nojuwab" path="res://scenes/objects/reference_bill.tscn" id="1_g7g4h"]
+
+[node name="Node2D" type="Node2D" unique_id=2061289860]
+
+[node name="ReferenceBill" parent="." unique_id=689262702 instance=ExtResource("1_g7g4h")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1172718094]
+zoom = Vector2(0.8, 0.8)
