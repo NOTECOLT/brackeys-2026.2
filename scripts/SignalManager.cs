@@ -1,0 +1,14 @@
+using Godot;
+using System;
+
+public partial class SignalManager : Node {
+
+    public static string PATH = "/root/SignalManager";
+    
+    /// <summary>
+    /// Sent when the reference bill is shown or hidden
+    /// </summary>
+    /// <param name="isShown">True if the reference is shown, false otherwise</param>
+	[Signal]
+	public delegate void ReferenceShowEventHandler(bool isShown);
+}
