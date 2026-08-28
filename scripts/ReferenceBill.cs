@@ -35,6 +35,8 @@ public partial class ReferenceBill : Node2D {
 
 			_helpTimer.WaitTime = waitTimeTillShow;
 			_helpTimer.Start();
+		} else if (state == GameState.GAME_OVER) {
+			_billAnimPlayer.Play("end");
 		}
 	}
 

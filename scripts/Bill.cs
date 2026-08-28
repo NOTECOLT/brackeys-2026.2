@@ -25,10 +25,13 @@ public partial class Bill : RigidBody2D {
 
     private Node2D _layerParent;
 
-    public override void _Ready() {
-        base._Ready();
+    private SignalManager _signalMgr;
 
+    public override void _Ready() {
+        _signalMgr = GetNode<SignalManager>(SignalManager.PATH);
         _layerParent = GetNode<Node2D>("PositionWrapper");
+
+        _signalMgr.ChangeGameState += OnChangeGameState;
 
         // The number of fake elements to be generated IF the bill isnt real
         int fakeRemaining = 0;
@@ -61,5 +64,13 @@ public partial class Bill : RigidBody2D {
             if (layerSprite.Texture != null) _layerParent.AddChild(newBillLayer);
             elementsRemaining--;
         }
+    }
+
+    public override void _ExitTree() {
+        _signalMgr.ChangeGameState -= OnChangeGameState;
+    }
+
+    public void OnChangeGameState(GameState state) {
+        QueueFree();
     }
 }

@@ -144,7 +144,8 @@ public partial class GameManager : Node {
     }
     
     private void OnBillSwiped() {
-        SpawnBill();
+        if (gameState == GameState.GAME)
+            SpawnBill();
     }
 
     private void BillSwipedCorrect() {
