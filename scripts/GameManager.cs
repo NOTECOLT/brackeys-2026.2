@@ -54,9 +54,6 @@ public partial class GameManager : Node {
 
     [Signal]
     public delegate void BillWrongEventHandler();
-    
-    [Signal]
-    public delegate void SetZoomEventHandler(bool isZoomed);
 
     /* -- Other Private Game Variables used for Game State-- */
     private int _score = 0;
@@ -94,15 +91,6 @@ public partial class GameManager : Node {
     public override void _Process(double delta) {
         base._Process(delta);
 
-        /* -- Zoom Control -- */
-        if (Input.IsActionJustPressed("zoom")) {
-            toggleIsZoomed(true);
-        }
-
-        if (Input.IsActionJustReleased("zoom")) {
-            toggleIsZoomed(false);
-        }
-
         /* -- Timer Processing -- */
         if (timeLeft > 0) {
             timeLeft -= delta;
@@ -115,14 +103,6 @@ public partial class GameManager : Node {
         } else {
             GetTree().ChangeSceneToFile("res://scenes//game_over.tscn");
         }
-    }
-
-    /// <summary>
-    /// Toggles isZoomed. Currently referenced in GameHUD when the zoom button is pressed.
-    /// </summary>
-    public void toggleIsZoomed(bool isZoomed) {
-        _isZoomed = isZoomed;
-        EmitSignal(SignalName.SetZoom, _isZoomed);
     }
 
     private void SpawnBill() {

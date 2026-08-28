@@ -30,14 +30,22 @@ public partial class GameCamera : Node2D {
 		_camera = GetNode<Camera2D>("Camera2D");
 		_animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 
-		gameManager.SetZoom += OnZoomToggled;
 		gameManager.BillWrong += OnBillWrong;
 
 		_camera.Zoom = Vector2.One * unZoomedValue;
 	}
 
 	public override void _Process(double delta) {
-		
+
+        if (Input.IsActionJustPressed("zoom")) {
+            toggleZoom(true);
+        }
+
+        if (Input.IsActionJustReleased("zoom")) {
+            toggleZoom(false);
+        }
+
+
 		if (_isZoomed) {
 			// Camera zoom in;
 			if (_camera.Zoom.X < zoomedValue) {
@@ -78,7 +86,7 @@ public partial class GameCamera : Node2D {
 		}
 	}
 
-	private void OnZoomToggled(bool isZoomed) {
+	private void toggleZoom(bool isZoomed) {
 		_isZoomed = isZoomed;
 
 		if (_isZoomed) {
