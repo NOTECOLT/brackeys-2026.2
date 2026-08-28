@@ -5,6 +5,7 @@ public partial class ReferenceBill : Node2D {
 	[Export]
 	public float waitTimeTillShow = 1.5f;
 
+	private SignalManager _signalMgr;
 	/// <summary>
 	/// Marks if the reference bill has been shown for the first time already
 	/// </summary>
@@ -16,6 +17,7 @@ public partial class ReferenceBill : Node2D {
 	private Label _tooltip;
 	private Timer _helpTimer;
 	public override void _Ready() {
+		_signalMgr = GetNode<SignalManager>(SignalManager.PATH);
 		_positionWrapper = GetNode<CollisionObject2D>("PositionWrapper");
 		_billAnimPlayer = GetNode<AnimationPlayer>("PositionWrapper/BillAnimationPlayer");
 		_tooltipAnimPlayer = GetNode<AnimationPlayer>("PositionWrapper/TooltipAnimationPlayer");
@@ -38,8 +40,10 @@ public partial class ReferenceBill : Node2D {
 					_billAnimPlayer.Play("hide_reference");
 				} else {
 					_billAnimPlayer.Play("show_reference");
-				}		
+				}
 				_isShown = !_isShown;
+
+				_signalMgr.EmitSignal(SignalManager.SignalName.ReferenceShow, _isShown);
 
 				// Disable tooltip after clicking once
 				if (!_hasBeenShown) {

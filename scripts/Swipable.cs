@@ -14,9 +14,15 @@ public partial class Swipable : Node {
 	private RigidBody2D _rigidBody;
 	private bool _isSwipable = false;
 	private RandomSFXPlayer _sfxPlayer;
+
+	private SignalManager _signalMgr;
+    private bool _isReferenceShown = false;
 	public override void _Ready() {
+		_signalMgr = GetNode<SignalManager>(SignalManager.PATH);
 		_rigidBody = GetNode<RigidBody2D>("..");
 		_sfxPlayer = GetNode<RandomSFXPlayer>("../MovementSFX");
+
+		_signalMgr.ReferenceShow += OnReferenceShown;
 	}
 
 	public override void _Process(double delta) {
@@ -27,7 +33,7 @@ public partial class Swipable : Node {
 
 		/* -- Swiping -- */
 		// Detect Swipe Start
-		if (Input.IsActionJustPressed("press") && _isSwipable) {
+		if (Input.IsActionJustPressed("press") && _isSwipable && !_isReferenceShown) {
 			if (!_isSwiping) {
 				_isSwiping = true;
 				_mouseStartPosition = _rigidBody.GetGlobalMousePosition();
@@ -35,7 +41,7 @@ public partial class Swipable : Node {
 		}
 
 		// Swiping Action
-		if (Input.IsActionPressed("press")) {
+		if (Input.IsActionPressed("press") && !_isReferenceShown) {
 			if (_isSwiping) {
 				_mouseCurrentPosition = _rigidBody.GetGlobalMousePosition();
 
@@ -65,5 +71,9 @@ public partial class Swipable : Node {
 	/// </summary>
 	public void SetIsSwipable() {
 		_isSwipable = true;
+	}
+
+	private void OnReferenceShown(bool isShown) {
+		_isReferenceShown = isShown;
 	}
 }
