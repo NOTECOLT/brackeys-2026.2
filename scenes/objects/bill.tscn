@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://dn5hckdmubwtu" path="res://scenes/objects/bill_layer.tscn" id="17_n7h6a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ejbd"]
-size = Vector2(704, 272)
+size = Vector2(520, 224)
 
 [sub_resource type="Animation" id="Animation_h4yh8"]
 length = 0.001
@@ -118,6 +118,7 @@ billLayer = ExtResource("17_n7h6a")
 billElements = Array[Object]([ExtResource("2_n7h6a"), ExtResource("3_47urd"), ExtResource("4_v4eam"), ExtResource("5_io5w0"), ExtResource("6_vt6u1"), ExtResource("7_hxqyd"), ExtResource("8_dscca"), ExtResource("9_t4k3i"), ExtResource("10_qmonm"), ExtResource("11_t4vkw"), ExtResource("12_7gm25"), ExtResource("13_sswl5"), ExtResource("14_qsmco"), ExtResource("15_nukl7"), ExtResource("16_u2txv")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=714117665]
+position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_0ejbd")
 
 [node name="PositionWrapper" type="Node2D" parent="." unique_id=623221735]

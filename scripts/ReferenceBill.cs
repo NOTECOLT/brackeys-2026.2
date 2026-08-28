@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class ReferenceBill : Area2D {
+public partial class ReferenceBill : Node2D {
 	[Export]
 	public float waitTimeTillShow = 1.5f;
 
@@ -10,18 +10,20 @@ public partial class ReferenceBill : Area2D {
 	/// </summary>
 	private bool _hasBeenShown = false;
 	private bool _isShown = false;
+	private CollisionObject2D _positionWrapper;
 	private AnimationPlayer _billAnimPlayer;
 	private AnimationPlayer _tooltipAnimPlayer;
 	private Label _tooltip;
 	private Timer _helpTimer;
 	public override void _Ready() {
-		_billAnimPlayer = GetNode<AnimationPlayer>("BillAnimationPlayer");
-		_tooltipAnimPlayer = GetNode<AnimationPlayer>("TooltipAnimationPlayer");
+		_positionWrapper = GetNode<CollisionObject2D>("PositionWrapper");
+		_billAnimPlayer = GetNode<AnimationPlayer>("PositionWrapper/BillAnimationPlayer");
+		_tooltipAnimPlayer = GetNode<AnimationPlayer>("PositionWrapper/TooltipAnimationPlayer");
+		_tooltip = GetNode<Label>("PositionWrapper/Tooltip");
+		_helpTimer = GetNode<Timer>("HelpTimer");
 
-		_tooltip = GetNode<Label>("Tooltip");
-
-		_helpTimer = GetNode<Timer>("../HelpTimer");
-		_helpTimer.Timeout += OnHelpTimerTimeout;
+		_positionWrapper.InputEvent += OnInputEvent;
+		_helpTimer.Timeout += OnHelpTimerTimeout;	
 
 		_isShown = false;
 
@@ -29,7 +31,7 @@ public partial class ReferenceBill : Area2D {
 		_helpTimer.Start();
 	}
 
-    public override void _InputEvent(Viewport viewport, InputEvent @event, int shapeIdx) {
+    private void OnInputEvent(Node viewport, InputEvent @event, long shapeIdx) {
 		if (@event is InputEventMouseButton mouseEvent) {
 			if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed) {
 				if (_isShown) {

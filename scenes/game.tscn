@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://us777beeva7r"]
 
-[ext_resource type="Texture2D" uid="uid://dmxlujyhgrukn" path="res://assets/temp/table_background.jpg" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://it433dksbr3h" path="res://scenes/objects/game_manager.tscn" id="1_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://cyp8oaf2tsvrt" path="res://scenes/objects/bill.tscn" id="2_iywne"]
 [ext_resource type="PackedScene" uid="uid://ddt88wg0xbckd" path="res://scenes/ui/floating_number.tscn" id="3_gee14"]
 [ext_resource type="PackedScene" uid="uid://bdu6wdhtev10f" path="res://scenes/objects/swipe_zone.tscn" id="3_p57ef"]
 [ext_resource type="PackedScene" uid="uid://bdouadh5oqfmh" path="res://scenes/ui/game_hud.tscn" id="4_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://dlhjmwgcbj8g7" path="res://assets/art/Table_Full_Reso.png" id="4_vtaks"]
 [ext_resource type="AudioStream" uid="uid://b6127h3qbc6cw" path="res://assets/audio/bgm/game_layer_AB.tres" id="6_gee14"]
 [ext_resource type="PackedScene" uid="uid://b8fwqykyklaq5" path="res://scenes/ui/game_camera.tscn" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://b6y5g00dwyuse" path="res://scripts/audio/DynamicAudio.cs" id="9_0tnpc"]
@@ -44,15 +44,10 @@ fakeBillZone = NodePath("../FakeBillSwipeZone")
 dynamicAudio = NodePath("../BGM")
 
 [node name="TableBackground" type="Sprite2D" parent="." unique_id=48266285]
-position = Vector2(3, 8)
-texture = ExtResource("1_iywne")
-
-[node name="TableBackground2" type="Sprite2D" parent="." unique_id=1051859060]
-position = Vector2(3, 953)
-texture = ExtResource("1_iywne")
+position = Vector2(0, -20)
+texture = ExtResource("4_vtaks")
 
 [node name="RealLabel" type="Label" parent="." unique_id=710308401]
-visible = false
 offset_left = 379.0
 offset_top = -37.0
 offset_right = 475.0
@@ -62,7 +57,6 @@ theme_override_font_sizes/font_size = 40
 text = "REAL"
 
 [node name="FakeLabel" type="Label" parent="." unique_id=710035627]
-visible = false
 offset_left = -491.0
 offset_top = -32.0
 offset_right = -395.0
@@ -100,6 +94,7 @@ energy = 0.5
 texture = SubResource("GradientTexture2D_543kl")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1758278171]
+color = Color(0.7953939, 0.79539394, 0.7953939, 1)
 energy = 0.9
 blend_mode = 1
 range_z_min = 0
