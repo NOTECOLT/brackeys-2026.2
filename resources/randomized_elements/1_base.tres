@@ -9,3 +9,4 @@
 script = ExtResource("1_mlqef")
 realSprites = Array[Object]([ExtResource("3_hpge1")])
 fakeSprites = Array[Object]([ExtResource("1_ahat8"), ExtResource("2_tvrin")])
+chanceToGoMissing = 0.0

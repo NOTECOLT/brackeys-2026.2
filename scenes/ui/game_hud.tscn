@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bbrgkvpnl61tp" path="res://scripts/ui/GameHUD.cs" id="1_xsr0h"]
 [ext_resource type="PackedScene" uid="uid://y2erkmymfvbh" path="res://scenes/ui/wrong_indicator.tscn" id="2_el006"]
-[ext_resource type="Texture2D" uid="uid://c54dhxj6gqjgt" path="res://assets/temp/magnifying_glass.png" id="2_fnxle"]
 
 [node name="GameHUD" type="CanvasLayer" unique_id=1871189853]
 script = ExtResource("1_xsr0h")
@@ -40,4 +39,3 @@ offset_right = 758.0
 offset_bottom = 1446.0
 rotation = -0.7853982
 scale = Vector2(0.125, 0.125)
-texture_normal = ExtResource("2_fnxle")

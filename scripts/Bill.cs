@@ -46,6 +46,7 @@ public partial class Bill : RigidBody2D {
                 // if the bill isn't real, then randomly decide which elements will be faked
 
                 if (GD.Randf() < (float)fakeRemaining / elementsRemaining) {
+
                     layerSprite.Texture = billElement.GenerateRandomFakeSprite();
                     fakeRemaining--;
                     wasFaked = true;
@@ -57,7 +58,7 @@ public partial class Bill : RigidBody2D {
                 layerSprite.Texture = billElement.GenerateRandomRealSprite();
             }
 
-            _layerParent.AddChild(newBillLayer);
+            if (layerSprite.Texture != null) _layerParent.AddChild(newBillLayer);
             elementsRemaining--;
         }
     }

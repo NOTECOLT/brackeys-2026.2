@@ -15,8 +15,14 @@ public partial class RandomizedElement : Resource {
     [Export]
     public WeightedSprite[] fakeSprites;
 
+    /// <summary>
+    /// Percentage that an element can go missing.
+    /// </summary>
+    [Export]
+    public float chanceToGoMissing = 0.4f;
 
     public Texture2D GenerateRandomRealSprite() {
+        // If theres only one sprite, then just return that
         if (realSprites.Length == 1) return realSprites[0].sprite;
 
         int totalWeight = realSprites.Sum(sprite => sprite.weight);
@@ -33,6 +39,11 @@ public partial class RandomizedElement : Resource {
     }
 
     public Texture2D GenerateRandomFakeSprite() {
+        // If theres element can go missing, do not render it.
+        if (chanceToGoMissing > 0 && GD.Randf() < chanceToGoMissing)
+            return null;
+
+        // If theres only one sprite, then just return that
         if (fakeSprites.Length == 1) return fakeSprites[0].sprite;
 
         int totalWeight = fakeSprites.Sum(sprite => sprite.weight);
