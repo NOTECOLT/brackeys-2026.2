@@ -43,12 +43,6 @@ public partial class GameManager : Node {
     public DynamicAudio dynamicAudio;
 
     /* -- Signals -- */
-    /// <summary>
-    /// Signal sent on timer end
-    /// </summary>
-    [Signal]
-    public delegate void TimerEndEventHandler();
-
     [Signal]
     public delegate void ScoreUpdateEventHandler(int score);
 
