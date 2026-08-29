@@ -1,18 +1,22 @@
 using Godot;
 using System;
 
-public partial class DebugMenu : CanvasLayer {
+public partial class DebugHUD : CanvasLayer {
 	private SignalManager _signalMgr;
 
     private bool _isDebug;
 
     private GameState _state;
 
+    private Label _billData;
+
 	public override void _Ready() {
 		_signalMgr = GetNode<SignalManager>(SignalManager.PATH);
+        _billData = GetNode<Label>("./BillData");
 
 		_signalMgr.ChangeGameState += OnChangeGameState;
         _signalMgr.SetDebugMode += OnSetDebugMode;
+        _signalMgr.SendBillDebug += OnSendBillDebug;
 
         _isDebug = false;
         _state = GameState.MAIN_MENU;
@@ -30,12 +34,14 @@ public partial class DebugMenu : CanvasLayer {
     }
 
     private void UpdateVisibility() {
-        if (!_isDebug) return;
-
-		if (_state == GameState.MAIN_MENU || _state == GameState.GAME_OVER) {
+		if (_state == GameState.GAME && _isDebug) {
 			Visible = true;
 		} else {
 			Visible = false;
 		}
+    }
+
+    private void OnSendBillDebug(string log) {
+        _billData.Text = log;
     }
 }

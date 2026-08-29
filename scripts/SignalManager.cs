@@ -19,7 +19,13 @@ public partial class SignalManager : Node {
     [Signal]
     public delegate void ChangeGameStateEventHandler(GameState state);
 
-
+    /// <summary>
+    /// Sent whenever the game is set into debug mode
+    /// </summary>
+    /// <param name="isDebug"></param>
     [Signal]
     public delegate void SetDebugModeEventHandler(bool isDebug);
+
+    [Signal]
+    public delegate void SendBillDebugEventHandler(string log);
 }

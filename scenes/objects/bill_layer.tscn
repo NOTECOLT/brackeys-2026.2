@@ -1,7 +1,4 @@
 [gd_scene format=3 uid="uid://dn5hckdmubwtu"]
 
-[ext_resource type="Texture2D" uid="uid://c38dpk0taullf" path="res://assets/art/bill/real_elements/1 Base_REAL.png" id="1_kvro7"]
-
 [node name="BillLayer" type="Sprite2D" unique_id=1517252066]
 scale = Vector2(0.35, 0.35)
-texture = ExtResource("1_kvro7")

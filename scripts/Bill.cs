@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public partial class Bill : RigidBody2D {
     [Export]
@@ -27,17 +28,26 @@ public partial class Bill : RigidBody2D {
 
     private SignalManager _signalMgr;
 
+    /// <summary>
+    /// log summary of bill containing data of which sprites were faked for debugging purposes
+    /// </summary>    
+    private string _debugSpriteLog;
+
     public override void _Ready() {
         _signalMgr = GetNode<SignalManager>(SignalManager.PATH);
         _layerParent = GetNode<Node2D>("PositionWrapper");
 
         _signalMgr.ChangeGameState += OnChangeGameState;
+        
+        _debugSpriteLog = "[SpawnBill]\n";
 
         // The number of fake elements to be generated IF the bill isnt real
         int fakeRemaining = 0;
         if (!isReal) {
-            fakeRemaining = ((int)GD.Randi() % totalFakeElements) + 1;
+            fakeRemaining = Mathf.Max(1, ((int)GD.Randi() % totalFakeElements) + 1);
         }
+
+        _debugSpriteLog += $"{fakeRemaining} fake elements\n";
         
         int elementsRemaining = billElements.Length;
         foreach (RandomizedElement billElement in billElements) {
@@ -49,8 +59,15 @@ public partial class Bill : RigidBody2D {
                 // if the bill isn't real, then randomly decide which elements will be faked
 
                 if (GD.Randf() < (float)fakeRemaining / elementsRemaining) {
+                    WeightedSprite weightedSprite = billElement.GenerateRandomFakeSprite();
 
-                    layerSprite.Texture = billElement.GenerateRandomFakeSprite();
+                    if (weightedSprite != null) {
+                        layerSprite.Texture = weightedSprite.sprite;
+                        _debugSpriteLog += weightedSprite.ResourcePath + "\n";
+                    } else {
+                        _debugSpriteLog += billElement.ResourcePath + " EMPTY\n";
+                    }
+                    
                     fakeRemaining--;
                     wasFaked = true;
                 }
@@ -58,12 +75,14 @@ public partial class Bill : RigidBody2D {
 
             // If bill is real or the specific element wasnt faked, then generate real sprite
             if (isReal || !wasFaked) {
-                layerSprite.Texture = billElement.GenerateRandomRealSprite();
+                layerSprite.Texture = billElement.GenerateRandomRealSprite().sprite;
             }
 
             if (layerSprite.Texture != null) _layerParent.AddChild(newBillLayer);
             elementsRemaining--;
         }
+
+        _signalMgr.EmitSignal(SignalManager.SignalName.SendBillDebug, _debugSpriteLog);
     }
 
     public override void _ExitTree() {

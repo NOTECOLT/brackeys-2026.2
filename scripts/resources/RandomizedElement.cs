@@ -21,9 +21,9 @@ public partial class RandomizedElement : Resource {
     [Export]
     public float chanceToGoMissing = 0.4f;
 
-    public Texture2D GenerateRandomRealSprite() {
+    public WeightedSprite GenerateRandomRealSprite() {
         // If theres only one sprite, then just return that
-        if (realSprites.Length == 1) return realSprites[0].sprite;
+        if (realSprites.Length == 1) return realSprites[0];
 
         int totalWeight = realSprites.Sum(sprite => sprite.weight);
 
@@ -32,19 +32,19 @@ public partial class RandomizedElement : Resource {
         int runningWeight = 0;
         foreach (WeightedSprite sprite in realSprites) {
             runningWeight += sprite.weight;
-            if (rng < runningWeight) return sprite.sprite;
+            if (rng < runningWeight) return sprite;
         }
         
-        return realSprites[realSprites.Length - 1].sprite;
+        return realSprites[realSprites.Length - 1];
     }
 
-    public Texture2D GenerateRandomFakeSprite() {
+    public WeightedSprite GenerateRandomFakeSprite() {
         // If theres element can go missing, do not render it.
         if (chanceToGoMissing > 0 && GD.Randf() < chanceToGoMissing)
             return null;
 
         // If theres only one sprite, then just return that
-        if (fakeSprites.Length == 1) return fakeSprites[0].sprite;
+        if (fakeSprites.Length == 1) return fakeSprites[0];
 
         int totalWeight = fakeSprites.Sum(sprite => sprite.weight);
 
@@ -53,20 +53,9 @@ public partial class RandomizedElement : Resource {
         int runningWeight = 0;
         foreach (WeightedSprite sprite in fakeSprites) {
             runningWeight += sprite.weight;
-            if (rng < runningWeight) return sprite.sprite;
+            if (rng < runningWeight) return sprite;
         }
         
-        return fakeSprites[fakeSprites.Length - 1].sprite;
+        return fakeSprites[fakeSprites.Length - 1];
     }
-
-
-    // 1, 2, 1
-
-    // 4
-
-    // 1
-
-    // 2, 3
-
-    // 1
 }
