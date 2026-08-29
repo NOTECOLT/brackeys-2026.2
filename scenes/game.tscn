@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://bit18abjnasbg" path="res://scripts/ui/GameOver.cs" id="12_dinhu"]
 [ext_resource type="PackedScene" uid="uid://tg4aoc4v7idx" path="res://scenes/ui/debug_field.tscn" id="14_trtic"]
 [ext_resource type="Script" uid="uid://bjklbu7br8hh0" path="res://scenes/ui/DebugMenu.cs" id="16_rysoc"]
+[ext_resource type="Resource" uid="uid://cerbwj5x6dq8b" path="res://resources/debug_values/time_penalty.tres" id="18_ssvqc"]
 
 [sub_resource type="Gradient" id="Gradient_vtaks"]
 offsets = PackedFloat32Array(0, 0.9)
@@ -198,6 +199,7 @@ gameManager = NodePath("../Game/GameManager")
 [node name="GameManager" parent="Game" unique_id=167162442 node_paths=PackedStringArray("realBillZone", "fakeBillZone", "dynamicAudio") instance=ExtResource("1_lbhrr")]
 timeLimit = ExtResource("5_ca42v")
 timeBonus = ExtResource("6_rysoc")
+timePenalty = ExtResource("18_ssvqc")
 bill = ExtResource("2_iywne")
 floatingNumber = ExtResource("3_gee14")
 realBillZone = NodePath("../RealBillSwipeZone")
@@ -299,7 +301,6 @@ theme_override_font_sizes/font_size = 40
 text = "Restart Game"
 
 [node name="Debug Menu" type="CanvasLayer" parent="." unique_id=1706461571]
-visible = false
 script = ExtResource("16_rysoc")
 
 [node name="Time Bonus" parent="Debug Menu" unique_id=2022478506 instance=ExtResource("14_trtic")]
@@ -311,3 +312,9 @@ offset_left = 256.0
 offset_right = 446.0
 fieldName = "timeLimit"
 field = ExtResource("5_ca42v")
+
+[node name="Time Penalty" parent="Debug Menu" unique_id=1060606278 instance=ExtResource("14_trtic")]
+offset_left = 480.0
+offset_right = 670.0
+fieldName = "timePenalty"
+field = ExtResource("18_ssvqc")

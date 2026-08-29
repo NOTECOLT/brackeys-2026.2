@@ -32,6 +32,12 @@ public partial class GameManager : Node {
     [Export]
     public DebugDouble timeBonus;
 
+    /// <summary>
+    /// Decrease in time left whenever a bill is swiped iincorrectly
+    /// </summary>
+    [Export]
+    public DebugDouble timePenalty;
+
     /* -- Referenced Objects -- */
     [Export]
     public PackedScene bill;
@@ -93,7 +99,6 @@ public partial class GameManager : Node {
         /* -- Debug Mode -- */
         if (DEV_MODE & Input.IsActionJustPressed("debug")) {
             _isDebug = !_isDebug;
-            GD.Print(_isDebug);
             _signalMgr.EmitSignal(SignalManager.SignalName.SetDebugMode, _isDebug);
         }
 
@@ -175,8 +180,18 @@ public partial class GameManager : Node {
     }
 
     private void BillSwipedWrong() {
+        timeLeft -= timePenalty.value;
         EmitSignal(SignalName.BillWrong);
 
+        Node2D newFloatingNumber = floatingNumber.Instantiate<Node2D>();
+        Label label = newFloatingNumber.GetNode<Label>("./Label");
+        label.Text = $"-{(int)timePenalty.value}s";   
+        label.AddThemeColorOverride("red", Colors.Red);
+
         _wrongSFX.Play();
+
+        // CallDeferred pushes the function call to the end of the current frame.
+        // Godot forbids physics state alterations (add new node) while it processes collisions
+        CallDeferred(MethodName.AddChild, newFloatingNumber);
     }
 }
