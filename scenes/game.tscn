@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://cmd4b8pq7awkm" path="res://scripts/ui/DebugHUD.cs" id="15_264po"]
 [ext_resource type="Script" uid="uid://bjklbu7br8hh0" path="res://scripts/ui/DebugMenu.cs" id="16_rysoc"]
 [ext_resource type="Resource" uid="uid://cerbwj5x6dq8b" path="res://resources/debug_values/time_penalty.tres" id="18_ssvqc"]
+[ext_resource type="Resource" uid="uid://c3rgabnubjl44" path="res://resources/debug_values/max_fake_elements.tres" id="20_1kice"]
 
 [sub_resource type="Gradient" id="Gradient_vtaks"]
 offsets = PackedFloat32Array(0, 0.9)
@@ -341,18 +342,28 @@ theme_override_font_sizes/font_size = 25
 text = "Debug Mode"
 horizontal_alignment = 1
 
-[node name="Time Bonus" parent="DebugMenu" unique_id=2022478506 instance=ExtResource("14_trtic")]
+[node name="TimeBonus" parent="DebugMenu" unique_id=2022478506 instance=ExtResource("14_trtic")]
+offset_left = 478.0
+offset_right = 668.0
 fieldName = "timeBonus"
 field = ExtResource("6_rysoc")
 
-[node name="Time Limit" parent="DebugMenu" unique_id=1983572037 instance=ExtResource("14_trtic")]
-offset_left = 256.0
-offset_right = 446.0
+[node name="TimeLimit" parent="DebugMenu" unique_id=1983572037 instance=ExtResource("14_trtic")]
+offset_left = 32.0
+offset_right = 222.0
 fieldName = "timeLimit"
 field = ExtResource("5_ca42v")
 
-[node name="Time Penalty" parent="DebugMenu" unique_id=1060606278 instance=ExtResource("14_trtic")]
-offset_left = 480.0
-offset_right = 670.0
+[node name="TimePenalty" parent="DebugMenu" unique_id=1060606278 instance=ExtResource("14_trtic")]
+offset_left = 256.0
+offset_right = 446.0
 fieldName = "timePenalty"
 field = ExtResource("18_ssvqc")
+
+[node name="TotalFakeElements" parent="DebugMenu" unique_id=1593657142 instance=ExtResource("14_trtic")]
+offset_left = 696.0
+offset_right = 886.0
+offset_bottom = 448.0
+fieldName = "maxFakeElements"
+field = ExtResource("20_1kice")
+type = 1

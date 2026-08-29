@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DebugInt" format=3 uid="uid://c3rgabnubjl44"]
+
+[ext_resource type="Script" uid="uid://c53kawfshjla" path="res://scripts/resources/DebugInt.cs" id="1_nu3bf"]
+
+[resource]
+script = ExtResource("1_nu3bf")
+value = 5
+defaultValue = 5

@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 public partial class Bill : RigidBody2D {
     [Export]
-    public int totalFakeElements = 5;
+    public DebugInt totalFakeElements;
 
     /// <summary>
     /// True if the bill is real, false if fake
@@ -44,7 +44,7 @@ public partial class Bill : RigidBody2D {
         // The number of fake elements to be generated IF the bill isnt real
         int fakeRemaining = 0;
         if (!isReal) {
-            fakeRemaining = Mathf.Max(1, ((int)GD.Randi() % totalFakeElements) + 1);
+            fakeRemaining = Mathf.Max(1, ((int)GD.Randi() % totalFakeElements.value) + 1);
         }
 
         _debugSpriteLog += $"{fakeRemaining} fake elements\n";

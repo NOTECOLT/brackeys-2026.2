@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ctchepikbyrhg" path="res://scripts/Bill.cs" id="1_cc68x"]
 [ext_resource type="Script" uid="uid://bvob8q3jhk1rd" path="res://scripts/Swipable.cs" id="1_vl5p3"]
+[ext_resource type="Resource" uid="uid://c3rgabnubjl44" path="res://resources/debug_values/max_fake_elements.tres" id="2_47urd"]
 [ext_resource type="Resource" uid="uid://ddagipab2x05m" path="res://resources/randomized_elements/1_base.tres" id="2_n7h6a"]
 [ext_resource type="Resource" uid="uid://dubpvquxabffp" path="res://resources/randomized_elements/2_parallelogram_1.tres" id="3_47urd"]
 [ext_resource type="Resource" uid="uid://dh8t7rfumfw46" path="res://resources/randomized_elements/3_parallelogram_2.tres" id="4_v4eam"]
@@ -114,6 +115,7 @@ _data = {
 [node name="Bill" type="RigidBody2D" unique_id=1455309647]
 gravity_scale = 0.0
 script = ExtResource("1_cc68x")
+totalFakeElements = ExtResource("2_47urd")
 billLayer = ExtResource("17_n7h6a")
 billElements = Array[Object]([ExtResource("2_n7h6a"), ExtResource("3_47urd"), ExtResource("4_v4eam"), ExtResource("5_io5w0"), ExtResource("6_vt6u1"), ExtResource("7_hxqyd"), ExtResource("8_dscca"), ExtResource("9_t4k3i"), ExtResource("10_qmonm"), ExtResource("11_t4vkw"), ExtResource("12_7gm25"), ExtResource("13_sswl5"), ExtResource("14_qsmco"), ExtResource("15_nukl7"), ExtResource("16_u2txv")])
 
