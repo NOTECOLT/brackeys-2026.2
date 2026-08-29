@@ -26,6 +26,17 @@ public partial class SignalManager : Node {
     [Signal]
     public delegate void SetDebugModeEventHandler(bool isDebug);
 
+    /// <summary>
+    /// Carries debug info regarding each generated bill
+    /// </summary>
+    /// <param name="log"></param>
     [Signal]
     public delegate void SendBillDebugEventHandler(string log);
+
+    /// <summary>
+    /// Updates the game score
+    /// </summary>
+    /// <param name="score"></param>
+    [Signal]
+    public delegate void UpdateScoreEventHandler(int score);
 }

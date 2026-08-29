@@ -18,7 +18,7 @@ public partial class GameHUD : CanvasLayer {
 		_wrongIndicator = GetNode<WrongIndicator>("WrongIndicator");
 		
 		_signalMgr.ChangeGameState += OnChangeGameState;
-		gameManager.ScoreUpdate += OnScoreUpdate;
+		_signalMgr.UpdateScore += OnScoreUpdate;
 		gameManager.BillWrong += OnBillWrong;
 
 		Visible = false;

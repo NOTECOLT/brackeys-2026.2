@@ -56,9 +56,6 @@ public partial class GameManager : Node {
 
     /* -- Signals -- */
     [Signal]
-    public delegate void ScoreUpdateEventHandler(int score);
-
-    [Signal]
     public delegate void BillWrongEventHandler();
 
     /* -- Other Private Game Variables used for Game State-- */
@@ -187,7 +184,7 @@ public partial class GameManager : Node {
     private void BillSwipedCorrect() {
         timeLeft += timeBonus.value;
         _score += 1;
-        EmitSignal(SignalName.ScoreUpdate, _score);
+        _signalMgr.EmitSignal(SignalManager.SignalName.UpdateScore, _score);
 
         Node2D newFloatingNumber = floatingNumber.Instantiate<Node2D>();
         Label label = newFloatingNumber.GetNode<Label>("./Label");
