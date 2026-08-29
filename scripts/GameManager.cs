@@ -2,6 +2,8 @@ using Godot;
 using System;
 
 public partial class GameManager : Node {
+    [Export]
+    public const bool DEV_MODE = true;
 
     /* -- Public Values used for HUD & Game State -- */ 
 
@@ -64,6 +66,8 @@ public partial class GameManager : Node {
 
     private SignalManager _signalMgr;
 
+    private bool _isDebug;
+
     public override void _Ready() {
         base._Ready();
 
@@ -82,10 +86,19 @@ public partial class GameManager : Node {
         fakeBillZone.BillSwiped += OnFakeBillSwiped;
 
         gameState = GameState.MAIN_MENU;
+
+        _isDebug = false;
     }
 
     public override void _Process(double delta) {
         base._Process(delta);
+
+        /* -- Debug Mode -- */
+        if (DEV_MODE & Input.IsActionJustPressed("debug")) {
+            _isDebug = !_isDebug;
+            _signalMgr.EmitSignal(SignalManager.SignalName.SetDebugMode, _isDebug);
+        }
+
 
         if (gameState == GameState.GAME) {
             /* -- Timer Processing -- */

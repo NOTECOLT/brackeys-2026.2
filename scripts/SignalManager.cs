@@ -18,4 +18,8 @@ public partial class SignalManager : Node {
     /// <param name="state"></param>
     [Signal]
     public delegate void ChangeGameStateEventHandler(GameState state);
+
+
+    [Signal]
+    public delegate void SetDebugModeEventHandler(bool isDebug);
 }
