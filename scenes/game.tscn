@@ -156,6 +156,8 @@ light_mode = 1
 light_mode = 1
 
 [node name="Main" type="Node2D" unique_id=1139027406]
+metadata/_edit_horizontal_guides_ = [480.0, -520.0]
+metadata/_edit_vertical_guides_ = [-800.0, 800.0]
 
 [node name="TableBackground" type="Sprite2D" parent="." unique_id=48266285]
 position = Vector2(0, -20)

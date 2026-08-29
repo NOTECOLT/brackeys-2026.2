@@ -26,24 +26,32 @@ public partial class GameCamera : Node2D {
 
 	private AnimationPlayer _animPlayer;
 
+	private SignalManager _signalMgr;
+
+	private bool _canZoom = false;
+
 	public override void _Ready() {
 		_camera = GetNode<Camera2D>("Camera2D");
 		_animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		_signalMgr = GetNode<SignalManager>(SignalManager.PATH);
 
 		gameManager.BillWrong += OnBillWrong;
+		_signalMgr.ChangeGameState += OnChangeGameState;
 
 		_camera.Zoom = Vector2.One * unZoomedValue;
 	}
 
 	public override void _Process(double delta) {
 
-        if (Input.IsActionJustPressed("zoom")) {
-            toggleZoom(true);
-        }
+		if (_canZoom) {
+			if (Input.IsActionJustPressed("zoom")) {
+				toggleZoom(true);
+			}
 
-        if (Input.IsActionJustReleased("zoom")) {
-            toggleZoom(false);
-        }
+			if (Input.IsActionJustReleased("zoom")) {
+				toggleZoom(false);
+			}		
+		}
 
 
 		if (_isZoomed) {
@@ -97,5 +105,13 @@ public partial class GameCamera : Node2D {
 
 	private void OnBillWrong() {
 		_animPlayer.Play("wrong");
+	}
+
+	private void OnChangeGameState(GameState state) {
+		if (state == GameState.GAME) {
+			_canZoom = true;
+		} else {
+			_canZoom = false;
+		}
 	}
 }
