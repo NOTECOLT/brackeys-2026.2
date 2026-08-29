@@ -21,7 +21,7 @@ public partial class GameHUD : CanvasLayer {
 		gameManager.ScoreUpdate += OnScoreUpdate;
 		gameManager.BillWrong += OnBillWrong;
 
-		Hide();
+		Visible = false;
 	}
 
 	public override void _Process(double delta) {
@@ -30,9 +30,9 @@ public partial class GameHUD : CanvasLayer {
 
 	private void OnChangeGameState(GameState state) {
 		if (state == GameState.GAME) {
-			Show();
+			Visible = true;
 		} else {
-			Hide();
+			Visible = false;
 		}
 	}
 

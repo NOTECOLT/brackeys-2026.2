@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DebugDouble" format=3 uid="uid://hng2k7y8j0t5"]
+
+[ext_resource type="Script" uid="uid://dwnbvypsmwe6g" path="res://scripts/resources/DebugDouble.cs" id="1_xfm80"]
+
+[resource]
+script = ExtResource("1_xfm80")
+value = 2.0
+defaultValue = 2.0

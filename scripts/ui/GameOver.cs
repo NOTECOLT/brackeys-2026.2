@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class GameOver : Control {
+public partial class GameOver : CanvasLayer {
 	[Export]
 	public Button startGameButton;
 
@@ -13,7 +13,7 @@ public partial class GameOver : Control {
 		_signalMgr.ChangeGameState += OnChangeGameState;
 		startGameButton.Pressed += OnStartGamePressed;
 
-		Hide();
+		Visible = false;
 	}
 
 	private void OnStartGamePressed() {
@@ -22,9 +22,9 @@ public partial class GameOver : Control {
 
 	private void OnChangeGameState(GameState state) {
 		if (state == GameState.GAME_OVER) {
-			Show();
+			Visible = true;
 		} else {
-			Hide();
+			Visible = false;
 		}
 	}
 }

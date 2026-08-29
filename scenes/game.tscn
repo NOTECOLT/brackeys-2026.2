@@ -7,12 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://bdu6wdhtev10f" path="res://scenes/objects/swipe_zone.tscn" id="3_p57ef"]
 [ext_resource type="PackedScene" uid="uid://bdouadh5oqfmh" path="res://scenes/ui/game_hud.tscn" id="4_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://dlhjmwgcbj8g7" path="res://assets/art/Table_Full_Reso.png" id="4_vtaks"]
+[ext_resource type="Resource" uid="uid://bsn1ctguu2ehs" path="res://resources/debug_values/time_left.tres" id="5_ca42v"]
 [ext_resource type="AudioStream" uid="uid://b6127h3qbc6cw" path="res://assets/audio/bgm/game_layer_AB.tres" id="6_gee14"]
+[ext_resource type="Resource" uid="uid://hng2k7y8j0t5" path="res://resources/debug_values/time_bonus.tres" id="6_rysoc"]
 [ext_resource type="PackedScene" uid="uid://b8fwqykyklaq5" path="res://scenes/ui/game_camera.tscn" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://b6y5g00dwyuse" path="res://scripts/audio/DynamicAudio.cs" id="9_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://dvrsy0nojuwab" path="res://scenes/objects/reference_bill.tscn" id="10_vtaks"]
 [ext_resource type="Script" uid="uid://cfqvh3owl3xb5" path="res://scripts/ui/MainMenu.cs" id="11_kvpfn"]
 [ext_resource type="Script" uid="uid://bit18abjnasbg" path="res://scripts/ui/GameOver.cs" id="12_dinhu"]
+[ext_resource type="PackedScene" uid="uid://tg4aoc4v7idx" path="res://scenes/ui/debug_field.tscn" id="14_trtic"]
+[ext_resource type="Script" uid="uid://bjklbu7br8hh0" path="res://scenes/ui/DebugMenu.cs" id="16_rysoc"]
 
 [sub_resource type="Gradient" id="Gradient_vtaks"]
 offsets = PackedFloat32Array(0, 0.9)
@@ -184,10 +188,16 @@ blend_mode = 1
 range_z_min = 0
 range_z_max = 0
 
+[node name="GameCamera" parent="." unique_id=1484927458 node_paths=PackedStringArray("gameManager") instance=ExtResource("7_u5sy4")]
+unZoomedValue = 0.8
+zoomedValue = 2.0
+gameManager = NodePath("../Game/GameManager")
+
 [node name="Game" type="Node" parent="." unique_id=261947635]
 
 [node name="GameManager" parent="Game" unique_id=167162442 node_paths=PackedStringArray("realBillZone", "fakeBillZone", "dynamicAudio") instance=ExtResource("1_lbhrr")]
-timeLimit = 25.0
+timeLimit = ExtResource("5_ca42v")
+timeBonus = ExtResource("6_rysoc")
 bill = ExtResource("2_iywne")
 floatingNumber = ExtResource("3_gee14")
 realBillZone = NodePath("../RealBillSwipeZone")
@@ -203,11 +213,6 @@ position = Vector2(-1056, -9)
 [node name="GameHUD" parent="Game" unique_id=675619086 node_paths=PackedStringArray("gameManager") instance=ExtResource("4_u5sy4")]
 gameManager = NodePath("../GameManager")
 
-[node name="GameCamera" parent="Game" unique_id=1484927458 node_paths=PackedStringArray("gameManager") instance=ExtResource("7_u5sy4")]
-unZoomedValue = 0.8
-zoomedValue = 2.0
-gameManager = NodePath("../GameManager")
-
 [node name="BGM" type="AudioStreamPlayer" parent="Game" unique_id=912998031]
 stream = ExtResource("6_gee14")
 volume_db = -5.0
@@ -218,28 +223,21 @@ synchronizedStream = ExtResource("6_gee14")
 
 [node name="ReferenceBill" parent="Game" unique_id=689262702 instance=ExtResource("10_vtaks")]
 
-[node name="MainMenu" type="Control" parent="." unique_id=857659088 node_paths=PackedStringArray("startGameButton")]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -512.0
-offset_top = -384.0
-offset_right = 512.0
-offset_bottom = 376.0
+[node name="MainMenu" type="CanvasLayer" parent="." unique_id=1280208962 node_paths=PackedStringArray("startGameButton")]
 script = ExtResource("11_kvpfn")
 startGameButton = NodePath("StartGameButton")
 
 [node name="GameTitle" type="Label" parent="MainMenu" unique_id=441493134]
 material = SubResource("CanvasItemMaterial_dinhu")
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -136.0
-offset_top = -204.0
-offset_right = 144.0
-offset_bottom = -92.0
+offset_left = -208.0
+offset_top = -292.0
+offset_right = 226.0
+offset_bottom = -180.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 64
@@ -248,43 +246,35 @@ horizontal_alignment = 1
 
 [node name="StartGameButton" type="Button" parent="MainMenu" unique_id=93717495]
 material = SubResource("CanvasItemMaterial_kvuet")
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -133.0
-offset_top = -60.0
-offset_right = 133.0
-offset_bottom = 60.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 40
-text = "Start Game"
-
-[node name="GameOver" type="Control" parent="." unique_id=2036203356 node_paths=PackedStringArray("startGameButton")]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -512.0
-offset_top = -384.0
-offset_right = 512.0
-offset_bottom = 376.0
-script = ExtResource("12_dinhu")
-startGameButton = NodePath("RestartGame")
-
-[node name="GameOver" type="Label" parent="GameOver" unique_id=1611556949]
-material = SubResource("CanvasItemMaterial_trtic")
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -136.0
-offset_top = -204.0
-offset_right = 144.0
-offset_bottom = -92.0
+offset_top = -180.0
+offset_right = 130.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Start Game"
+
+[node name="GameOver" type="CanvasLayer" parent="." unique_id=1077684715 node_paths=PackedStringArray("startGameButton")]
+script = ExtResource("12_dinhu")
+startGameButton = NodePath("RestartGame")
+
+[node name="GameOver" type="Label" parent="GameOver" unique_id=1611556949]
+material = SubResource("CanvasItemMaterial_trtic")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -292.0
+offset_right = 190.0
+offset_bottom = -180.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.898574, 0.16879839, 0.10678632, 1)
@@ -294,17 +284,30 @@ horizontal_alignment = 1
 
 [node name="RestartGame" type="Button" parent="GameOver" unique_id=506336803]
 material = SubResource("CanvasItemMaterial_ir15t")
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -133.0
-offset_top = -60.0
-offset_right = 133.0
-offset_bottom = 60.0
+offset_left = -136.0
+offset_top = -180.0
+offset_right = 136.0
+offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "Restart Game"
+
+[node name="Debug Menu" type="CanvasLayer" parent="." unique_id=1706461571]
+visible = false
+script = ExtResource("16_rysoc")
+
+[node name="Time Bonus" parent="Debug Menu" unique_id=2022478506 instance=ExtResource("14_trtic")]
+fieldName = "timeBonus"
+field = ExtResource("6_rysoc")
+
+[node name="Time Limit" parent="Debug Menu" unique_id=1983572037 instance=ExtResource("14_trtic")]
+offset_left = 256.0
+offset_right = 446.0
+fieldName = "timeLimit"
+field = ExtResource("5_ca42v")

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class MainMenu : Control {
+public partial class MainMenu : CanvasLayer {
 	[Export]
 	public Button startGameButton;
 
@@ -20,9 +20,9 @@ public partial class MainMenu : Control {
 
 	private void OnChangeGameState(GameState state) {
 		if (state == GameState.MAIN_MENU) {
-			Show();
+			Visible = true;
 		} else {
-			Hide();
+			Visible = false;
 		}
 	}
 }

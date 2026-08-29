@@ -2,7 +2,6 @@ using Godot;
 using System;
 
 public partial class GameManager : Node {
-    [Export]
     public const bool DEV_MODE = true;
 
     /* -- Public Values used for HUD & Game State -- */ 
@@ -25,13 +24,13 @@ public partial class GameManager : Node {
     /// Time Limit expressed in seconds
     /// </summary>
     [Export]
-    public double timeLimit = 30.0d;
+    public DebugDouble timeLimit;
 
     /// <summary>
     /// Increase in time left whenever a bill is swiped correctly
     /// </summary>
     [Export]
-    public double timeBonus = 2.0d;
+    public DebugDouble timeBonus;
 
     /* -- Referenced Objects -- */
     [Export]
@@ -91,11 +90,10 @@ public partial class GameManager : Node {
     }
 
     public override void _Process(double delta) {
-        base._Process(delta);
-
         /* -- Debug Mode -- */
         if (DEV_MODE & Input.IsActionJustPressed("debug")) {
             _isDebug = !_isDebug;
+            GD.Print(_isDebug);
             _signalMgr.EmitSignal(SignalManager.SignalName.SetDebugMode, _isDebug);
         }
 
@@ -121,7 +119,7 @@ public partial class GameManager : Node {
         
         if (state == GameState.GAME) {
             // Set initial game values
-            timeLeft = timeLimit;
+            timeLeft = timeLimit.value;
             _score = 0;
             _isZoomed = false;
 
@@ -161,13 +159,13 @@ public partial class GameManager : Node {
     }
 
     private void BillSwipedCorrect() {
-        timeLeft += timeBonus;
+        timeLeft += timeBonus.value;
         _score += 1;
         EmitSignal(SignalName.ScoreUpdate, _score);
 
         Node2D newFloatingNumber = floatingNumber.Instantiate<Node2D>();
         Label label = newFloatingNumber.GetNode<Label>("./Label");
-        label.Text = $"+{(int)timeBonus}s";
+        label.Text = $"+{(int)timeBonus.value}s";
 
         _correctSFX.Play();
 
