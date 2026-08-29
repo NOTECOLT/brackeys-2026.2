@@ -42,16 +42,13 @@ public partial class GameCamera : Node2D {
 	}
 
 	public override void _Process(double delta) {
+        if (Input.IsActionJustPressed("zoom") && _canZoom) {
+            toggleZoom(true);
+        }
 
-		if (_canZoom) {
-			if (Input.IsActionJustPressed("zoom")) {
-				toggleZoom(true);
-			}
-
-			if (Input.IsActionJustReleased("zoom")) {
-				toggleZoom(false);
-			}		
-		}
+        if (Input.IsActionJustReleased("zoom")) {
+            toggleZoom(false);
+        }
 
 
 		if (_isZoomed) {

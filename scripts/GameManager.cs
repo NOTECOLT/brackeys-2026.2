@@ -69,6 +69,9 @@ public partial class GameManager : Node {
     private AudioStreamPlayer2D _correctSFX;
     private AudioStreamPlayer2D _wrongSFX; 
 
+    private AudioStreamPlayer2D _startSFX;
+    private AudioStreamPlayer2D _gameOverSFX;
+
     private SignalManager _signalMgr;
 
     private bool _isDebug;
@@ -79,6 +82,8 @@ public partial class GameManager : Node {
         _signalMgr = GetNode<SignalManager>(SignalManager.PATH);
         _correctSFX = GetNode<AudioStreamPlayer2D>("CorrectSFX");
         _wrongSFX = GetNode<AudioStreamPlayer2D>("WrongSFX");
+        _startSFX = GetNode<AudioStreamPlayer2D>("GameStartSFX");
+        _gameOverSFX = GetNode<AudioStreamPlayer2D>("GameOverSFX");
 
         /* -- Bill Spawning & Game Logic -- */
 
@@ -128,8 +133,12 @@ public partial class GameManager : Node {
             _score = 0;
             _isZoomed = false;
 
+            _startSFX.Play();
+
             // Spawn first bill
             SpawnBill();  
+        } else if (state == GameState.GAME_OVER) {
+            _gameOverSFX.Play();
         }
     }
 

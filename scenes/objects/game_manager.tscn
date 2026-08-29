@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://btrnp4ce8pc1k" path="res://scripts/GameManager.cs" id="1_hwd4i"]
 [ext_resource type="AudioStream" uid="uid://behcmv4tm8keq" path="res://assets/audio/sfx/Placeholder_Correct.wav" id="2_m4s6b"]
 [ext_resource type="AudioStream" uid="uid://b8d7lfcqsi82v" path="res://assets/audio/sfx/Placeholder_Wrong.wav" id="3_0jac5"]
+[ext_resource type="AudioStream" uid="uid://bwwhv6unovd0x" path="res://assets/audio/sfx/StartPower_LightFlourescentThing2.wav" id="4_0jac5"]
+[ext_resource type="AudioStream" uid="uid://cx4cq0mn7h136" path="res://assets/audio/sfx/StopPowerGameOver_LightFlourescentThing.wav" id="5_y541r"]
 
 [node name="GameManager" type="Node" unique_id=167162442]
 script = ExtResource("1_hwd4i")
@@ -14,3 +16,11 @@ volume_db = -2.0
 [node name="WrongSFX" type="AudioStreamPlayer2D" parent="." unique_id=979675096]
 stream = ExtResource("3_0jac5")
 volume_db = -2.0
+
+[node name="GameStartSFX" type="AudioStreamPlayer2D" parent="." unique_id=1714278476]
+stream = ExtResource("4_0jac5")
+volume_db = -6.0
+
+[node name="GameOverSFX" type="AudioStreamPlayer2D" parent="." unique_id=2130393810]
+stream = ExtResource("5_y541r")
+volume_db = -6.0
