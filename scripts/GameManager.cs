@@ -98,6 +98,9 @@ public partial class GameManager : Node {
         gameState = GameState.MAIN_MENU;
 
         _isDebug = false;
+
+        // Menu Audio
+        dynamicAudio.SetActiveStream(2);
     }
 
     public override void _Process(double delta) {
@@ -126,19 +129,28 @@ public partial class GameManager : Node {
 
     public void OnChangeGameState(GameState state) {
         gameState = state;
-        
-        if (state == GameState.GAME) {
-            // Set initial game values
-            timeLeft = timeLimit.value;
-            _score = 0;
-            _isZoomed = false;
 
-            _startSFX.Play();
+        switch (state) {
+            case GameState.MAIN_MENU:
+                dynamicAudio.SetActiveStream(2);
+                break;
+            case GameState.GAME:
+                // Audio not set here because it is set in Timer loop (_Process)
 
-            // Spawn first bill
-            SpawnBill();  
-        } else if (state == GameState.GAME_OVER) {
-            _gameOverSFX.Play();
+                // Set initial game values
+                timeLeft = timeLimit.value;
+                _score = 0;
+                _isZoomed = false;
+
+                _startSFX.Play();
+
+                // Spawn first bill
+                SpawnBill(); 
+                break;
+            case GameState.GAME_OVER:
+                dynamicAudio.SetActiveStream(2);
+                _gameOverSFX.Play();
+                break;
         }
     }
 

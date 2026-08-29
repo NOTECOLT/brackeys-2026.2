@@ -16,8 +16,14 @@ public partial class DynamicAudio : AudioStreamPlayer {
 	private int _activeStream = 0;
 
 	public override void _Ready() {
-        synchronizedStream.SetSyncStreamVolume(0, bgmMaxVolume);
+		// Normal Game BGM
+        synchronizedStream.SetSyncStreamVolume(0, NO_VOLUME);
+
+		// Frantic Game BGM
         synchronizedStream.SetSyncStreamVolume(1, NO_VOLUME);
+
+		// Menu BGM
+		synchronizedStream.SetSyncStreamVolume(2, bgmMaxVolume);
 	}
 
 	public override void _Process(double delta) {

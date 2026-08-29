@@ -216,9 +216,6 @@ position = Vector2(1056, -24)
 [node name="FakeBillSwipeZone" parent="Game" unique_id=156311024 instance=ExtResource("3_p57ef")]
 position = Vector2(-1056, -9)
 
-[node name="GameHUD" parent="Game" unique_id=675619086 node_paths=PackedStringArray("gameManager") instance=ExtResource("4_u5sy4")]
-gameManager = NodePath("../GameManager")
-
 [node name="BGM" type="AudioStreamPlayer" parent="Game" unique_id=912998031]
 stream = ExtResource("6_gee14")
 volume_db = -5.0
@@ -228,6 +225,9 @@ transitionSpeed = 10.0
 synchronizedStream = ExtResource("6_gee14")
 
 [node name="ReferenceBill" parent="Game" unique_id=689262702 instance=ExtResource("10_vtaks")]
+
+[node name="GameHUD" parent="Game" unique_id=675619086 node_paths=PackedStringArray("gameManager") instance=ExtResource("4_u5sy4")]
+gameManager = NodePath("../GameManager")
 
 [node name="DebugHUD" type="CanvasLayer" parent="Game" unique_id=511962320]
 script = ExtResource("15_264po")
