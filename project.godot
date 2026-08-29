@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="trust no ONES"
-config/version="dev-1.4"
+config/version="dev-1.4.1"
 run/main_scene="uid://us777beeva7r"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
