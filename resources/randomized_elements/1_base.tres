@@ -2,11 +2,10 @@
 
 [ext_resource type="Resource" uid="uid://cl5dr3ddc85k3" path="res://resources/weighted_sprites/bill/fake_elements/blunt/1_base_fake_b1.tres" id="1_ahat8"]
 [ext_resource type="Script" uid="uid://cr31sttr6nmg" path="res://scripts/resources/RandomizedElement.cs" id="1_mlqef"]
-[ext_resource type="Resource" uid="uid://bime222noh8ih" path="res://resources/weighted_sprites/bill/fake_elements/subtle/1_base_fake_s1.tres" id="2_tvrin"]
 [ext_resource type="Resource" uid="uid://hqlontq2dcy3" path="res://resources/weighted_sprites/bill/real_elements/1_base_real.tres" id="3_hpge1"]
 
 [resource]
 script = ExtResource("1_mlqef")
 realSprites = Array[Object]([ExtResource("3_hpge1")])
-fakeSprites = Array[Object]([ExtResource("1_ahat8"), ExtResource("2_tvrin")])
+fakeSprites = Array[Object]([ExtResource("1_ahat8")])
 chanceToGoMissing = 0.0

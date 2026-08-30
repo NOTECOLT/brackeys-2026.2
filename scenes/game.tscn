@@ -156,8 +156,6 @@ light_mode = 1
 light_mode = 1
 
 [node name="Main" type="Node2D" unique_id=1139027406]
-metadata/_edit_horizontal_guides_ = [480.0, -520.0]
-metadata/_edit_vertical_guides_ = [-800.0, 800.0]
 
 [node name="TableBackground" type="Sprite2D" parent="." unique_id=48266285]
 position = Vector2(0, -20)
@@ -251,7 +249,7 @@ offset_top = 88.0
 offset_right = 179.0
 offset_bottom = 111.0
 theme_override_font_sizes/font_size = 18
-text = "qowkeopqwkeopqwe"
+text = "[SpawnBill]"
 
 [node name="MainMenu" type="CanvasLayer" parent="." unique_id=1280208962 node_paths=PackedStringArray("startGameButton")]
 script = ExtResource("11_kvpfn")
@@ -281,9 +279,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -136.0
+offset_left = -135.0
 offset_top = -180.0
-offset_right = 130.0
+offset_right = 131.0
 offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -314,12 +312,18 @@ text = "GAME OVER"
 horizontal_alignment = 1
 
 [node name="Score" type="Label" parent="GameOver" unique_id=1427806939]
-offset_left = 446.0
-offset_top = 200.0
-offset_right = 578.0
-offset_bottom = 249.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = 192.0
+offset_right = 132.0
+offset_bottom = 241.0
+grow_horizontal = 2
 theme_override_font_sizes/font_size = 35
 text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RestartGame" type="Button" parent="GameOver" unique_id=506336803]
 material = SubResource("CanvasItemMaterial_ir15t")
@@ -328,9 +332,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -136.0
+offset_left = -135.0
 offset_top = -112.0
-offset_right = 136.0
+offset_right = 137.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
