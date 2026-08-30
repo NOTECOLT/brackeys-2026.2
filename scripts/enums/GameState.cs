@@ -4,5 +4,6 @@
 public enum GameState {
     MAIN_MENU,
     GAME,
-    GAME_OVER
+    GAME_OVER,
+    TUTORIAL
 }

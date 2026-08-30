@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="trust no ONES"
-config/version="dev-1.4.1"
+config/version="1.0.0"
 run/main_scene="uid://us777beeva7r"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 config/icon="uid://dfj0lc7fviy2x"
@@ -59,4 +59,5 @@ debug={
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.08235294, 0.07058824, 0.05882353, 1)

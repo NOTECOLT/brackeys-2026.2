@@ -15,7 +15,7 @@ public partial class PointLight : Node {
     private void OnChangeGameState(GameState state) {
         if (state == GameState.GAME_OVER) {
             _animPlayer.Play("shut_off");
-        } else {
+        } else if (state == GameState.GAME) {
             _animPlayer.Play("turn_on");
         }
     }

@@ -22,6 +22,7 @@
 [ext_resource type="Resource" uid="uid://cerbwj5x6dq8b" path="res://resources/debug_values/time_penalty.tres" id="18_ssvqc"]
 [ext_resource type="Texture2D" uid="uid://cuwfgulj10612" path="res://assets/art/Game_Over.png" id="19_37s47"]
 [ext_resource type="FontFile" uid="uid://b1rfmkp4hh262" path="res://assets/fonts/tahoma.ttf" id="19_bt5mj"]
+[ext_resource type="Script" uid="uid://bwah0ygypn4t2" path="res://scripts/ui/ExplainMenu.cs" id="19_e1j6l"]
 [ext_resource type="Resource" uid="uid://c3rgabnubjl44" path="res://resources/debug_values/max_fake_elements.tres" id="20_1kice"]
 
 [sub_resource type="Gradient" id="Gradient_vtaks"]
@@ -148,6 +149,41 @@ _data = {
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kvuet"]
 light_mode = 1
+
+[sub_resource type="Animation" id="Animation_e1j6l"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_pl11u"]
+resource_name = "open"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0),
+"points": PackedFloat32Array(94.965, 0, 0, 0.033333335, -1.1608328, 88, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.06666667, 0.16666667, 1, -0.06666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bhx41"]
+_data = {
+&"RESET": SubResource("Animation_e1j6l"),
+&"open": SubResource("Animation_pl11u")
+}
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ir15t"]
 light_mode = 1
@@ -283,6 +319,62 @@ offset_bottom = 1083.0
 grow_horizontal = 2
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("17_5newe")
+
+[node name="ExplainMenu" type="CanvasLayer" parent="." unique_id=711600350 node_paths=PackedStringArray("startGameButton")]
+script = ExtResource("19_e1j6l")
+startGameButton = NodePath("StartGameButton")
+
+[node name="Explainer" type="Panel" parent="ExplainMenu" unique_id=549782413]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -289.035
+offset_right = 453.0
+offset_bottom = 162.99988
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Text" type="Label" parent="ExplainMenu/Explainer" unique_id=811472364]
+custom_minimum_size = Vector2(856, 416)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 880.0
+offset_bottom = 440.0
+theme_override_fonts/font = ExtResource("19_bt5mj")
+theme_override_font_sizes/font_size = 28
+text = "You are a counterfeiter! Your job is to sort the real-looking bills from all the misprints.
+
+Swipe real bills to the right and fake bills to the left using LEFT CLICK.
+
+Hold RIGHT CLICK to zoom in and scan for imperfections.
+
+Every correctly sorted bill grants bonus time while incorrectly sorted bills decrease your overall time. Sort as many bills before the time runs out!"
+autowrap_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ExplainMenu/Explainer" unique_id=22824226]
+libraries/ = SubResource("AnimationLibrary_bhx41")
+
+[node name="StartGameButton" type="Button" parent="ExplainMenu" unique_id=1932685529]
+material = SubResource("CanvasItemMaterial_kvuet")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = 192.0
+offset_right = 111.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("19_bt5mj")
+theme_override_font_sizes/font_size = 35
+text = "Start Game"
 
 [node name="GameOver" type="CanvasLayer" parent="." unique_id=1077684715 node_paths=PackedStringArray("startGameButton", "scoreLabel")]
 script = ExtResource("12_dinhu")
