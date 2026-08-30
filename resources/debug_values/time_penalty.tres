@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_grux8")
-value = 1.0
-defaultValue = 1.0
+value = 10.0
+defaultValue = 10.0

@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_xfm80")
-value = 2.0
-defaultValue = 2.0
+value = 5.0
+defaultValue = 5.0
