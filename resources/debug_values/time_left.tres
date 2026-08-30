@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_nt5q6")
-value = 40.0
-defaultValue = 40.0
+value = 50.0
+defaultValue = 50.0
