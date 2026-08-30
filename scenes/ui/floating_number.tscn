@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ddt88wg0xbckd"]
 
 [ext_resource type="Script" uid="uid://do34nylgncv7o" path="res://scripts/ui/FloatingNumber.cs" id="1_twvc4"]
+[ext_resource type="FontFile" uid="uid://b1rfmkp4hh262" path="res://assets/fonts/tahoma.ttf" id="2_sfvj8"]
 
 [sub_resource type="Animation" id="Animation_nywkb"]
 length = 0.001
@@ -64,10 +65,11 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -32.5
 offset_top = -27.5
-offset_right = 65.5
+offset_right = 70.5
 offset_bottom = 55.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_sfvj8")
 theme_override_font_sizes/font_size = 60
 text = "+1s"
 horizontal_alignment = 1

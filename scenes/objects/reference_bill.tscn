@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://frfc8c7uebr" path="res://assets/art/bill/0 Real Money_REAL.png" id="1_oj533"]
 [ext_resource type="Script" uid="uid://cmbda1dudg3mk" path="res://scripts/ReferenceBill.cs" id="1_v2xcu"]
+[ext_resource type="FontFile" uid="uid://b1rfmkp4hh262" path="res://assets/fonts/tahoma.ttf" id="3_s34op"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ejbd"]
 size = Vector2(752, 328)
@@ -202,6 +203,7 @@ offset_top = -211.0
 offset_right = 377.0
 offset_bottom = -98.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_s34op")
 theme_override_font_sizes/font_size = 35
 text = "click here to see reference bill
 "
