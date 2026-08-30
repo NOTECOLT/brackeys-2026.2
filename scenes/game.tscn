@@ -269,10 +269,14 @@ theme_override_font_sizes/font_size = 35
 text = "Start Game"
 
 [node name="Logo" type="TextureRect" parent="MainMenu" unique_id=2079789686]
-offset_left = 312.0
-offset_top = 72.0
-offset_right = 1912.0
-offset_bottom = 1072.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -199.0
+offset_top = 83.0
+offset_right = 1401.0
+offset_bottom = 1083.0
+grow_horizontal = 2
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("17_5newe")
 
@@ -340,34 +344,62 @@ text = "Debug Mode"
 horizontal_alignment = 1
 
 [node name="TimeBonus" parent="DebugMenu" unique_id=2022478506 instance=ExtResource("14_trtic")]
-offset_left = 478.0
-offset_top = 514.0
-offset_right = 668.0
-offset_bottom = 563.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -248.0
+offset_right = 206.0
+offset_bottom = -199.0
+grow_horizontal = 2
+grow_vertical = 0
 fieldName = "timeBonus"
 field = ExtResource("6_rysoc")
 
 [node name="TimeLimit" parent="DebugMenu" unique_id=1983572037 instance=ExtResource("14_trtic")]
-offset_left = 32.0
-offset_top = 514.0
-offset_right = 222.0
-offset_bottom = 563.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -432.0
+offset_top = -248.0
+offset_right = -242.0
+offset_bottom = -199.0
+grow_horizontal = 2
+grow_vertical = 0
 fieldName = "timeLimit"
 field = ExtResource("5_ca42v")
 
 [node name="TimePenalty" parent="DebugMenu" unique_id=1060606278 instance=ExtResource("14_trtic")]
-offset_left = 256.0
-offset_top = 514.0
-offset_right = 446.0
-offset_bottom = 563.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -208.0
+offset_top = -248.0
+offset_right = -18.0
+offset_bottom = -199.0
+grow_horizontal = 2
+grow_vertical = 0
 fieldName = "timePenalty"
 field = ExtResource("18_ssvqc")
 
 [node name="TotalFakeElements" parent="DebugMenu" unique_id=1593657142 instance=ExtResource("14_trtic")]
-offset_left = 696.0
-offset_top = 514.0
-offset_right = 886.0
-offset_bottom = 578.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 240.0
+offset_top = -248.0
+offset_right = 430.0
+offset_bottom = -184.0
+grow_horizontal = 2
+grow_vertical = 0
 fieldName = "maxFakeElements"
 field = ExtResource("20_1kice")
 type = 1
